@@ -1,7 +1,7 @@
 #summary One-sentence summary of this page.
 
   *  [Tutorial Tutorial]
-  *  [Setup Setup]
-  *  [Tutorial2 Tutorial2]
-  *  [Tutorial3 Tutorial3]
-  *  [Tutorial4 Tutorial4]
+  *  [VeSPA_Installation VeSPA_Installation]
+  *  [WikiFAQ WikiFAQ]
+  *  [Wiki Wiki]
+  *  [GettingStarted GettingStarted]
