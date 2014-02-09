@@ -11,3 +11,76 @@ Add your content here.  Format your content with:
   * Text in *bold* or _italic_
   * Headings, paragraphs, and lists
   * Automatic links to other wiki pages
+
+<BR> 
+==Interfaces==
+
+
+<BR> 
+===Voucher===
+
+{{{
+message msgVoucherReq_V2LTCA {
+	required int32 iReqType = 1 [default = -1];
+        required string strUserName = 2 [default = ""];
+        required string strPwd = 3 [default = ""];
+	required string strEmailAddress = 4 [default = ""];
+	required string strCaptcha = 5 [default = ""]; 
+	required int32 iNonce = 6 [default = -1];
+	required int64 tTimeStamp = 7 [default = -1];
+};
+}}}
+
+{{{
+message msgVoucherRes_LTCA2V {
+	required int32 iReqType = 1 [default = -1];
+        optional msgSignerInfo signer = 2;
+	required string strVoucher = 3 [default = ""];
+	required int32 iNonce = 4 [default = -1];
+	required int64 tTimeStamp = 5 [default = -1];
+	required msgError stErrInfo = 6;
+	optional msgSignature stSign = 7;
+};
+}}}
+
+
+
+<BR> 
+===X509 Certificate===
+
+{{{
+message msgX509CertReq_V2LTCA {
+	required int32 iReqType = 1 [default = -1];
+	required int32 iLTCAIdRange = 2 [default = -1];
+	required string strProofOfPossessionVoucher = 3 [default = ""];
+	required string strX509CertReq = 4 [default = ""];
+	required int32 iNonce = 5 [default = -1];
+	required int64 tTimeStamp = 6 [default = -1];
+};
+}}}
+
+
+{{{
+message msgX509CertRes_LTCA2V {
+	required int32 iReqType = 1 [default = -1];
+        optional msgSignerInfo signer = 2;
+	required string strReqIdentification = 3 [default = ""];
+	required string strX509Cert = 4 [default = ""];
+	required int32 iNonce = 5 [default = -1];
+	required int64 tTimeStamp = 6 [default = -1];
+	required msgError stErrInfo = 7;
+	optional msgSignature stSign = 8;
+};
+}}}
+
+
+
+
+<BR> 
+===Ticket===
+
+
+<BR> 
+===Pseudonym===
+
+
