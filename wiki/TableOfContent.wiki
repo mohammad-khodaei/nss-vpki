@@ -1,8 +1,8 @@
 #summary One-sentence summary of this page.
 
+  *  [GettingStarted GettingStarted]
   *  [Tutorial Tutorial]
-  *  [Download]
+  *  [Download Download]
   *  [VeSPA_Installation VeSPA_Installation]
   *  [WikiFAQ WikiFAQ]
   *  [Wiki Wiki]
-  *  [GettingStarted GettingStarted]
