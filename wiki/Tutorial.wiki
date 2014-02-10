@@ -173,3 +173,6 @@ message msgPsnymCertRes_PCA2V {
 	optional msgSignature stSign = 11;
 };
 }}}
+
+
+You can download the entire interface file from <a href="http://code.google.com/p/kth-vespa/source/browse/trunk/interfaces/interfaces.proto" target="_blank">here</a>.
