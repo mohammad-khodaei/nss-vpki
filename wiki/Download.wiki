@@ -10,4 +10,4 @@
 In order to connect to VeSPA, you need to download the following libraries: 
 
   * Google Protocol Buffer <a href="http://code.google.com/p/protobuf/" target="_blank">Download</a>
-  * XMLRPC <a href="http://xmlrpc-c.sourceforge.net/" target="_blank">XMLRPC in C/C++</a> and  <a href="https://github.com/timroes/aXMLRPC" target="_blank">XMLRPC in Java</a> 
+  * XMLRPC <a href="http://xmlrpc-c.sourceforge.net/" target="_blank">XMLRPC in C/C++</a> and  <a href="https://github.com/timroes/aXMLRPC" target="_blank">XMLRPC for Android</a> 
