@@ -5,7 +5,7 @@
 
 
 
-= Details =
+= Libraries =
 
 In order to connect to VeSPA, you need to download the following libraries: 
 
