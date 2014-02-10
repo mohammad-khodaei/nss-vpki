@@ -137,10 +137,10 @@ message msgTicketFormat {
 
 
 
-
-
 <BR> 
 ===Pseudonym===
+Pseudonymous certificate is considered a conditional anonymous certificate, used to protect legitimate users' privacy. Users obtain the services, as X.509 certificate, without revealing their real identity. In order to obtain a pseudonymous certificate, the request should be sent to the PCA as the following format: 
+
 {{{
 message msgPsnymCertReq_V2PCA {
 	required int32 iReqType = 1 [default = -1];
@@ -156,7 +156,7 @@ message msgPsnymCertReq_V2PCA {
 };
 }}}
 
-
+The response from PCA to the users is as follows: 
 
 {{{
 message msgPsnymCertRes_PCA2V {
