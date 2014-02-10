@@ -77,7 +77,7 @@ message msgX509CertRes_LTCA2V {
 
 <BR> 
 ===Ticket===
-
+{{{
 message msgTicketReq {
 	required int32 iReqType = 1 [default = -1];
 	optional msgSignerInfo signer = 2;
@@ -90,9 +90,12 @@ message msgTicketReq {
         required string strX509Cert = 9[default = ""];
 	optional msgSignature stSign = 10;
 };
+}}}
 
 
 
+
+{{{
 message msgTicketFormat {
 	required int32 iTicketType = 1 [default = -1];
 	optional msgSignerInfo signer = 2;
@@ -109,9 +112,13 @@ message msgTicketFormat {
 	required int64 tPsnymExpiryTime = 13 [default = -1];
 	optional msgSignature stSign = 14;
 };
+}}}
 
 
 
+
+
+{{{
 message msgTicketRes {
 	required int32 iReqType = 1 [default = -1];
 	optional msgSignerInfo signer = 2;
@@ -125,11 +132,14 @@ message msgTicketRes {
 	required msgError stErrInfo = 10;
 	optional msgSignature stSign = 11;
 };
+}}}
+
+
 
 
 <BR> 
 ===Pseudonym===
-
+{{{
 message msgPsnymCertReq_V2PCA {
 	required int32 iReqType = 1 [default = -1];
 	required int32 iTicketSize = 2 [default = -1];
@@ -142,7 +152,11 @@ message msgPsnymCertReq_V2PCA {
 	required int32 iNonce = 9 [default = -1];
 	required int64 tTimeStamp = 10 [default = -1];
 };
+}}}
 
+
+
+{{{
 message msgPsnymCertRes_PCA2V {
 	required int32 iReqType = 1 [default = -1];
         optional msgSignerInfo signer = 2;
@@ -156,3 +170,4 @@ message msgPsnymCertRes_PCA2V {
 	required msgError stErrInfo = 10;
 	optional msgSignature stSign = 11;
 };
+}}}
