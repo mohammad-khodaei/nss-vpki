@@ -4,14 +4,17 @@
 
 Using Google Protocol-Buffer, one can communicate with the system in almost every language, as stated in <a href="https://developers.google.com/protocol-buffers/docs/reference/other">here</a>.
 
-
-= C/C++ =
+<BR>
+= C/C++ APIs =
 A simple hint on connecting to the servers in C/C++: 
 
 
-= Java =
+<BR>
+= Java APIs =
 A simple hint on connecting to the servers in Java: 
 
 
-= Python =
+<BR>
+= Python APIs =
 A simple hint on connecting to the servers in Python:
+
