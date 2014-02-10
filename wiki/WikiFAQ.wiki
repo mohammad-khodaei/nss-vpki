@@ -5,4 +5,8 @@
 
 
 
-= Details =
+= Which libraries to install? =
+
+= Where to start? =
+
+= Others =
