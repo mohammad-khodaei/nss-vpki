@@ -12,7 +12,9 @@ Google Protocol Buffer is used to connect.
 
 <BR> 
 ===Voucher===
+Obtaining an X.509 certificate requires getting a voucher from LTCA. Having sent the voucher request to the server, a valid voucher is sent to your kth email, be used in obtaining X.509 certificate. 
 
+The voucher request format is defined as below:
 {{{
 message msgVoucherReq_V2LTCA {
 	required int32 iReqType = 1 [default = -1];
@@ -25,6 +27,7 @@ message msgVoucherReq_V2LTCA {
 };
 }}}
 
+The voucher response format is as below: 
 {{{
 message msgVoucherRes_LTCA2V {
 	required int32 iReqType = 1 [default = -1];
@@ -41,7 +44,9 @@ message msgVoucherRes_LTCA2V {
 
 <BR> 
 ===X509 Certificate===
+Having received a voucher, one can receive an X.509 certificate. Creating the certificate signing request requires to add the same email address inside. 
 
+The X.509 certificate request format is as below: 
 {{{
 message msgX509CertReq_V2LTCA {
 	required int32 iReqType = 1 [default = -1];
@@ -53,7 +58,7 @@ message msgX509CertReq_V2LTCA {
 };
 }}}
 
-
+The response format to receive X.509 certificate is defined as: 
 {{{
 message msgX509CertRes_LTCA2V {
 	required int32 iReqType = 1 [default = -1];
@@ -71,6 +76,8 @@ message msgX509CertRes_LTCA2V {
 
 <BR> 
 ===Ticket===
+
+
 {{{
 message msgTicketReq {
 	required int32 iReqType = 1 [default = -1];
