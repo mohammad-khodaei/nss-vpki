@@ -2,8 +2,11 @@
 
 = Introduction =
 
-The interfaces to connect to VeSPA are elaborated below. 
+The interfaces to connect to VeSPA are elaborated below. You can download the entire interface file from <a href="http://code.google.com/p/kth-vespa/source/browse/trunk/interfaces/interfaces.proto">here</a>. 
 
+<P>
+Further details on the main interfaces are discussed here. 
+</P>
 
 
 <BR> 
