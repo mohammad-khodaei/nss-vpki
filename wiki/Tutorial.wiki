@@ -76,7 +76,9 @@ message msgX509CertRes_LTCA2V {
 
 <BR> 
 ===Ticket===
+VeSPA is a ticket-based system, equipping users to obtain their desired services using a valid ticket. Moreover, it provides Single-Sign-On (SSO) scheme so that users can get authenticated once and use the rest of the services, accordingly. 
 
+The format of a ticket is defined as below: 
 
 {{{
 message msgTicketReq {
@@ -93,8 +95,26 @@ message msgTicketReq {
 };
 }}}
 
+The response of a ticket is as follows:
+
+{{{
+message msgTicketRes {
+	required int32 iReqType = 1 [default = -1];
+	optional msgSignerInfo signer = 2;
+	required int32 iTicketSize = 3 [default = -1];
+	required string strTicket = 4 [default = ""]; 
+	required uint32 uiMaxNoPsnymCert = 5 [default = 0];
+	required int32 iLTCAIdRange = 6 [default = -1];
+	required int32 iPCAIdRange = 7 [default = -1];
+	required int32 iNonce = 8 [default = -1];
+	required int64 tTimeStamp = 9 [default = -1];
+	required msgError stErrInfo = 10;
+	optional msgSignature stSign = 11;
+};
+}}}
 
 
+Tickets are processed by the appropriate service providers while users are not involved in the process. Each ticket has the following format: 
 
 {{{
 message msgTicketFormat {
@@ -115,25 +135,6 @@ message msgTicketFormat {
 };
 }}}
 
-
-
-
-
-{{{
-message msgTicketRes {
-	required int32 iReqType = 1 [default = -1];
-	optional msgSignerInfo signer = 2;
-	required int32 iTicketSize = 3 [default = -1];
-	required string strTicket = 4 [default = ""]; 
-	required uint32 uiMaxNoPsnymCert = 5 [default = 0];
-	required int32 iLTCAIdRange = 6 [default = -1];
-	required int32 iPCAIdRange = 7 [default = -1];
-	required int32 iNonce = 8 [default = -1];
-	required int64 tTimeStamp = 9 [default = -1];
-	required msgError stErrInfo = 10;
-	optional msgSignature stSign = 11;
-};
-}}}
 
 
 
