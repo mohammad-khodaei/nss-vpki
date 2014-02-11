@@ -7,7 +7,7 @@ Using Google Protocol-Buffer, one can communicate with the system in almost ever
 
 = Request & Response Type Format Definitions =
 
-
+==LTCA==
 {{{
 REQ_X509_CERT_REQ_VEHICLE_TO_LTCA_USING_BOOST                       100
 RES_ISSUE_X509_CERT_LTCA_TO_VEHICLE_USING_BOOST                     101
@@ -33,7 +33,7 @@ RES_VOUCHER_LTCA_TO_VEHICLE_USING_PROTO_BUFF                        129
 }}}
 
 
-
+==PCA==
 {{{
 REQ_NATIVE_PSNYM_CERT_VEHICLE_TO_PCA_USING_BOOST                    200
 RES_NATIVE_PSNYM_CERT_PCA_TO_VEHICLE_USING_BOOST                    201
