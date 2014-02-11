@@ -12,7 +12,7 @@ Further details on the main interfaces are discussed here.
 = Request & Response Type Format Definitions =
 
 
-==LTCA== <h1><a name="LTCA"></a>HTML support<a href="#LTCA">
+==LTCA== <h1><a name="LTCA"></a>LTCA<a href="#LTCA"></h1>
 {{{
 REQ_VOUCHER_VEHICLE_TO_LTCA_USING_BOOST                             100
 RES_VOUCHER_LTCA_TO_VEHICLE_USING_BOOST                             101
