@@ -9,7 +9,7 @@ Further details on the main interfaces are discussed here.
 </P>
 
 
-= Request & Response Type Format Definitions =
+<h1><a name="ReqResDef" class="section_anchor"></a>Request & Response Type Format Definitions<a href="#ReqResDef"></a></h1> =  =
 
 
 ==LTCA== 
@@ -194,7 +194,7 @@ message msgTicketFormat {
 
 
 <BR> 
-===Pseudonym===<h1><a name="LTCA" class="section_anchor"></a>LTCA<a href="#LTCA"></a></h1>
+===Pseudonym===
 Pseudonymous certificate is considered a conditional anonymous certificate, used to protect legitimate users' privacy. Users obtain the services, as X.509 certificate, without revealing their real identity. In order to obtain a pseudonymous certificate, the request should be sent to the PCA as the following format: 
 
 {{{
