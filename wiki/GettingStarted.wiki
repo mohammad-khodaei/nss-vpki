@@ -11,6 +11,30 @@ Using Google Protocol-Buffer, one can communicate with the system in almost ever
 = C/C++ APIs =
 A simple hint on connecting to the servers in C/C++: 
 
+{{{
+interfaces::msgVoucherReq_V2LTCA stV2LTCA;
+        stV2LTCA.set_ireqtype(REQ_VOUCHER_VEHICLE_TO_LTCA_USING_PROTO_BUFF);
+
+stV2LTCA.set_strusername(strUserName);
+stV2LTCA.set_strpwd(strPwd);
+
+stV2LTCA.set_stremailaddress(strEmailAddress);
+stV2LTCA.set_strcaptcha(strCapcha);
+
+iNonce = m_cmnUtils.getNonce();
+stV2LTCA.set_inonce(iNonce);
+
+m_cmnUtils.getTimeStamp(tCurrentTime);
+stV2LTCA.set_ttimestamp(tCurrentTime);
+
+std::string strSerialized;
+if (!stV2LTCA.SerializeToString(&strSerialized)) {
+       fprintf(stderr, "\nThe serialization failed on voucher request. "
+}
+
+strSerializedOutputData = m_cmnUtils.encodeBase64(strSerialized,
+                strSerialized.length());
+}}}
 
 <BR>
 = Java APIs =
