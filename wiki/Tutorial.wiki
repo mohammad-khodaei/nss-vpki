@@ -9,7 +9,7 @@ Further details on the main interfaces are discussed here.
 </P>
 
 
-<h1><a name="ReqResDef" class="section_anchor"></a>Request & Response Type Format Definitions<a href="#ReqResDef"></a></h1> =  =
+<h1><a name="ReqResDef" class="section_anchor"></a>Request & Response Type Format Definitions<a href="#ReqResDef"></a></h1>
 
 
 ==LTCA== 
