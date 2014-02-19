@@ -10,7 +10,7 @@ Follow this link before starting using Google Protocol Buffer:
 You can also add the plugin into your IDE:
 <a href="http://plugins.netbeans.org/plugin/15724/protocol-buffers-netbeans-plugin">netbeans</a>
 
-#<a href="http://plugins.netbeans.org/plugin/15724/protocol-buffers-#netbeans-plugin">Eclipse</a>
+
 
 
 
