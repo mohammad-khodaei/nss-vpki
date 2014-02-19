@@ -5,7 +5,7 @@
 Using Google Protocol-Buffer, one can communicate with the system in almost every language, as stated in <a href="https://developers.google.com/protocol-buffers/docs/reference/other">here</a>.
 
 Follow this link before starting using Google Protocol Buffer:
-<a href="https://developers.google.com/protocol-buffers/docs/tutorials">here</a>
+<a href="https://developers.google.com/protocol-buffers/docs/tutorials">Tutorials for Developers</a>
 
 
 =Communication=
