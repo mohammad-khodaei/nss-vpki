@@ -2,13 +2,11 @@
 
 = Introduction =
 
-Using Google Protocol-Buffer, one can communicate with the system in almost every language, as stated in <a href="https://developers.google.com/protocol-buffers/docs/reference/other">here</a>.
+Using Google Protocol-Buffer, one can communicate with the system in almost every language, as stated in <a href="https://developers.google.com/protocol-buffers/docs/reference/other">official website</a>. Before start sending the requests to the PKI, follow this link to read more about Google Protocol Buffer:
+<a href="https://developers.google.com/protocol-buffers/docs/tutorials">Tutorials for Developers</a>. You can also add the plugin into your IDE:
+<a href="http://plugins.netbeans.org/plugin/15724/protocol-buffers-netbeans-plugin">Netbeans</a>. 
 
-Follow this link before starting using Google Protocol Buffer:
-<a href="https://developers.google.com/protocol-buffers/docs/tutorials">Tutorials for Developers</a>
-
-You can also add the plugin into your IDE:
-<a href="http://plugins.netbeans.org/plugin/15724/protocol-buffers-netbeans-plugin">Netbeans</a>
+The interfaces to the PKI is located: <a href="http://code.google.com/p/kth-vespa/source/browse/trunk/interfaces/interfaces.proto">here</a>.
 
 =Communication=
 The communication to VeSPA is through XMLRPC, available for every programming language. The library can be downloaded from <a href="http://xmlrpc-c.sourceforge.net/">xmlrpc-c</a>. A simple example is also availabe in <a href="http://sourceforge.net/p/xmlrpc-c/code/HEAD/tree/trunk/examples/cpp/sample_add_client_complex.cpp">example</a>.
