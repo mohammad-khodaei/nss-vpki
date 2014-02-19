@@ -1,9 +1,6 @@
 package interfaces;
 
 option java_package = "its.service.interfaces";
-//enum Constants {
-//	INVALID_VALUE = -1;
-//}
 /*****************************************************************************/
 /// The request profile keeps track of the requests using the incoming identity to respond to the appropriate requests accordingly
 message msgReqProfile {
