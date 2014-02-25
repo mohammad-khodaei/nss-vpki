@@ -12,6 +12,18 @@ Further details on the main interfaces are discussed here.
 <h1><a name="ReqResDef" class="section_anchor"></a>Request & Response Type Format Definitions<a href="#ReqResDef"></a></h1>
 
 
+==Servers== 
+
+LTCA: 
+IP Address: 
+
+PCA:
+IP Address: 
+
+RA:
+IP Address: 
+
+
 ==LTCA== 
 {{{
 REQ_VOUCHER_VEHICLE_TO_LTCA_USING_BOOST                             100
