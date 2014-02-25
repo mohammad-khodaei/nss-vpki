@@ -26,18 +26,6 @@ Further details on the main interfaces are discussed here.
   * IP Address
 
 
-===LTCA===
-<BR>
-IP Address: 
-
-===PCA===
-<BR>
-IP Address: 
-
-===RA===
-<BR>
-IP Address: 
-
 
 ==LTCA== 
 {{{
