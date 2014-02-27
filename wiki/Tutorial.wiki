@@ -8,7 +8,7 @@ The interfaces to connect to VeSPA are elaborated below. You can download the en
 Further details on the main interfaces are discussed here. 
 </P>
 
-
+a
 <h1><a name="ReqResDef" class="section_anchor"></a>Request & Response Type Format Definitions<a href="#ReqResDef"></a></h1>
 
 
