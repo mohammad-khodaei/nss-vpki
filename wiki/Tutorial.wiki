@@ -8,7 +8,6 @@ The interfaces to connect to VeSPA are elaborated below. You can download the en
 Further details on the main interfaces are discussed here. 
 </P>
 
-a
 <h1><a name="ReqResDef" class="section_anchor"></a>Request & Response Type Format Definitions<a href="#ReqResDef"></a></h1>
 
 
@@ -16,16 +15,20 @@ a
 
 
  * LTCA
-  * IP Address
-  * 
+  * 172.31.212.101
+  * LTCA_SERVER_URL  = https://172.31.212.101/cgi-bin/ltca
+  * LTCA_METHOD_NAME = ltca.operate
+
 
  * PCA
-  * IP Address
+  * 172.31.212.102
+  * PCA_SERVER_URL  = https://172.31.212.102/cgi-bin/pca 
+  * PCA_METHOD_NAME = pca.operate
 
  * RA
   * IP Address
-
-
+  * RA_SERVER_URL  = https://192.168.100.4/cgi-bin/ra
+  * RA_METHOD_NAME = ra.operate
 
 ==LTCA== 
 {{{
