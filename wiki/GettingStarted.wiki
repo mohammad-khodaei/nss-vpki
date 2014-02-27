@@ -14,6 +14,75 @@ The interfaces to the PKI is located: <a href="http://code.google.com/p/kth-vesp
 The communication to VeSPA is through XMLRPC, available for every programming language. The library can be downloaded from <a href="http://xmlrpc-c.sourceforge.net/">xmlrpc-c</a>. A simple example is also availabe in <a href="http://sourceforge.net/p/xmlrpc-c/code/HEAD/tree/trunk/examples/cpp/sample_add_client_complex.cpp">example</a>.
 
 
+==Servers== 
+
+
+ * LTCA
+  * 172.31.212.101
+  * LTCA_SERVER_URL  = https://172.31.212.101/cgi-bin/ltca
+  * LTCA_METHOD_NAME = ltca.operate
+
+
+ * PCA
+  * 172.31.212.102
+  * PCA_SERVER_URL  = https://172.31.212.102/cgi-bin/pca 
+  * PCA_METHOD_NAME = pca.operate
+
+ * RA
+  * Private: 192.168.100.4
+  * RA_SERVER_URL  = https://192.168.100.4/cgi-bin/ra
+  * RA_METHOD_NAME = ra.operate
+
+==LTCA== 
+{{{
+REQ_VOUCHER_VEHICLE_TO_LTCA_USING_BOOST                             100
+RES_VOUCHER_LTCA_TO_VEHICLE_USING_BOOST                             101
+REQ_X509_CERT_REQ_VEHICLE_TO_LTCA_USING_BOOST                       102
+RES_ISSUE_X509_CERT_LTCA_TO_VEHICLE_USING_BOOST                     103
+REQ_X509_CERT_VALIDATION_VEHICLE_TO_LTCA_USING_BOOST                104
+RES_X509_CERT_VALIDATION_LTCA_TO_VEHICLE_USING_BOOST                105
+REQ_NATIVE_TICKET_VEHICLE_TO_LTCA_USING_BOOST                       106
+RES_NATIVE_TICKET_LTCA_TO_VEHICLE_USING_BOOST                       107
+REQ_FOREIGN_TICKET_VEHICLE_TO_LTCA_USING_BOOST                      108
+RES_FOREIGN_TICKET_LTCA_TO_VEHICLE_USING_BOOST                      109
+
+REQ_VOUCHER_VEHICLE_TO_LTCA_USING_PROTO_BUFF                        120
+RES_VOUCHER_LTCA_TO_VEHICLE_USING_PROTO_BUFF                        121
+REQ_X509_CERT_REQ_VEHICLE_TO_LTCA_USING_PROTO_BUFF                  122
+RES_ISSUE_X509_CERT_LTCA_TO_VEHICLE_USING_PROTO_BUFF                123
+REQ_X509_CERT_VALIDATION_VEHICLE_TO_LTCA_USING_PROTO_BUFF           124
+RES_X509_CERT_VALIDATION_LTCA_TO_VEHICLE_USING_PROTO_BUFF           125
+REQ_NATIVE_TICKET_VEHICLE_TO_LTCA_USING_PROTO_BUFF                  126
+RES_NATIVE_TICKET_LTCA_TO_VEHICLE_USING_PROTO_BUFF                  127
+REQ_FOREIGN_TICKET_VEHICLE_TO_LTCA_USING_PROTO_BUFF                 128
+RES_FOREIGN_TICKET_LTCA_TO_VEHICLE_USING_PROTO_BUFF                 129
+}}}
+
+
+==PCA==
+{{{
+REQ_NATIVE_PSNYM_CERT_VEHICLE_TO_PCA_USING_BOOST                    200
+RES_NATIVE_PSNYM_CERT_PCA_TO_VEHICLE_USING_BOOST                    201
+NATIVE_PSNYM_CERT_ACK_OK_VEHICLE_TO_PCA_USING_BOOST                 202
+REQ_PSNYM_CRL_VEHICLE_TO_PCA_USING_BOOST                            203
+RES_PSNYM_CRL_PCA_TO_VEHICLE_USING_BOOST                            204
+REQ_UPGRADING_SYS_CONFIG_CLIENT_TO_PCA_USING_BOOST                  205
+RES_UPGRADING_SYS_CONFIG_PCA_TO_CLIENT_USING_BOOST                  206
+REQ_PSNYM_OCSP_VEHICLE_TO_PCA_USING_BOOST                           207
+RES_PSNYM_OCSP_PCA_TO_VEHICLE_USING_BOOST                           208
+
+REQ_NATIVE_PSNYM_CERT_VEHICLE_TO_PCA_USING_PROTO_BUFF               220
+RES_NATIVE_PSNYM_CERT_PCA_TO_VEHICLE_USING_PROTO_BUFF               221
+NATIVE_PSNYM_CERT_ACK_OK_VEHICLE_TO_PCA_USING_PROTO_BUFF            222
+REQ_PSNYM_CRL_VEHICLE_TO_PCA_USING_PROTO_BUFF                       223
+RES_PSNYM_CRL_PCA_TO_VEHICLE_USING_PROTO_BUFF                       224
+REQ_UPGRADING_SYS_CONFIG_CLIENT_TO_PCA_USING_PROTO_BUFF             225
+RES_UPGRADING_SYS_CONFIG_PCA_TO_CLIENT_USING_PROTO_BUFF             226
+REQ_PSNYM_OCSP_VEHICLE_TO_PCA_USING_PROTO_BUFF                      227
+RES_PSNYM_OCSP_PCA_TO_VEHICLE_USING_PROTO_BUFF                      228
+}}}
+
+
 <BR>
 = C/C++ APIs =
 A simple hint on connecting to the servers in C/C++: 
