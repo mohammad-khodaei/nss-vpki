@@ -33,7 +33,7 @@ The communication to VeSPA is through XMLRPC, available for every programming la
   * RA_SERVER_URL  = https://192.168.100.4/cgi-bin/ra
   * RA_METHOD_NAME = ra.operate
 
-==LTCA== 
+==LTCA Operational Code== 
 {{{
 REQ_VOUCHER_VEHICLE_TO_LTCA_USING_BOOST                             100
 RES_VOUCHER_LTCA_TO_VEHICLE_USING_BOOST                             101
@@ -59,7 +59,7 @@ RES_FOREIGN_TICKET_LTCA_TO_VEHICLE_USING_PROTO_BUFF                 129
 }}}
 
 
-==PCA==
+==PCA Operational Code==
 {{{
 REQ_NATIVE_PSNYM_CERT_VEHICLE_TO_PCA_USING_BOOST                    200
 RES_NATIVE_PSNYM_CERT_PCA_TO_VEHICLE_USING_BOOST                    201
