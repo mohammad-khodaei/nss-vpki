@@ -26,7 +26,7 @@ Further details on the main interfaces are discussed here.
   * PCA_METHOD_NAME = pca.operate
 
  * RA
-  * IP Address
+  * Private: 192.168.100.4
   * RA_SERVER_URL  = https://192.168.100.4/cgi-bin/ra
   * RA_METHOD_NAME = ra.operate
 
