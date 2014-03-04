@@ -101,6 +101,8 @@ message msgVoucherReq_V2LTCA {
 };
 }}}
 
+Leave the username and password field empty. Moreover, set 'strCaptcha' to "captcha". 
+
 The voucher response format is as below: 
 {{{
 message msgVoucherRes_LTCA2V {
