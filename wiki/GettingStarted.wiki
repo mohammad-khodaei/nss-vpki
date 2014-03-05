@@ -89,10 +89,8 @@ RES_PSNYM_OCSP_PCA_TO_VEHICLE_USING_PROTO_BUFF                      228
 
 
 <BR>
-==
-A simple hint on connecting to the servers in C/C++: 
-As demonstrated here, the protocol buffer message should be serialized and encoded in Base64 format before sending to the servers. Specifies the first parameter in XMLRPC as ReqType while the second parameter as the serialized encoded protocol buffer message.  The details of each field is pinpointed in <a href="http://code.google.com/p/kth-vespa/wiki/Tutorial">Tutorial</a>. 
-
+=How to make a request=
+As demonstrated here, the protocol buffer message should be serialized and encoded in Base64 format before sending to the servers. The client should specify the first parameter in XMLRPC as ReqType while the second parameter as the serialized encoded protocol buffer message. The details of each field is pinpointed in <a href="http://code.google.com/p/kth-vespa/wiki/Tutorial">Tutorial</a>. 
 
 == C/C++ APIs ==
 
