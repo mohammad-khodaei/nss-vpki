@@ -18,7 +18,7 @@ The communication to VeSPA is through XMLRPC, available for every programming la
 
 
 ==Servers Details== 
-
+LTCA, Long-Term Certificate Authority, is the responsible authority to issue voucher, ticket, and X.509 certificates. PCA, Pseudonymous Certificate Authority, is responsible for issuing pseudonymous certificates. 
 
  * LTCA
   * 172.31.212.101
