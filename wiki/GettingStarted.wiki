@@ -119,6 +119,7 @@ As demonstrated here, the protocol buffer message should be serialized and encod
 = Java APIs =
 A simple hint on connecting to the servers in Java: 
 
+{{{
 msgVoucherReq_V2LTCA.Builder voucherReq = msgVoucherReq_V2LTCA.newBuilder();
 
 voucherReq.setIReqType(reqType);
@@ -132,6 +133,7 @@ voucherReq.setTTimeStamp(tTimeStamp);
 String encodedReq = Base64.encodeToString(voucherReq.build().toByteArray(), Base64.NO_WRAP);
 
 String response = (String) ltcaClient.call("ltca.operate", reqType, encodedReq);
+}}}
 
 <BR>
 = Python APIs =
