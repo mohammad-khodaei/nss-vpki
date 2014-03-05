@@ -6,9 +6,7 @@ In order to communicate with VeSPA, you can follow the steps below to configure 
 = Protocol Buffer =
 Using Google Protocol-Buffer, one can communicate with the system in almost every language, as stated in <a href="https://developers.google.com/protocol-buffers/docs/reference/other">official website</a>. Before start sending the requests to the PKI, follow this link to read more about Google Protocol Buffer:
 <a href="https://developers.google.com/protocol-buffers/docs/tutorials">Tutorials for Developers</a>. You can also add the plugin into your IDE in 
-<a href="http://plugins.netbeans.org/plugin/15724/protocol-buffers-netbeans-plugin">Netbeans</a>, or <a href="https://code.google.com/p/protobuf-dt/">Eclipse</a>. 
-
-*In Eclipse, ONLY install Xbase, Xtext Runtime and Xtext SDK of 2.4.2 version (instead of 2.3).*
+<a href="http://plugins.netbeans.org/plugin/15724/protocol-buffers-netbeans-plugin">Netbeans</a>, or <a href="https://code.google.com/p/protobuf-dt/">Eclipse</a>. *However, for Eclipse, ONLY install Xbase, Xtext Runtime and Xtext SDK of 2.4.2 version (instead of 2.3).*
 
 The interfaces to the PKI is located: <a href="http://code.google.com/p/kth-vespa/source/browse/trunk/interfaces/interfaces.proto">here</a>. Download this .proto file and compile the interface according to your desired language. You can compile and generate the corresponding classes either through the command, or the installed plugin in the IDE. Check <a href="https://developers.google.com/protocol-buffers/docs/tutorials">Protocol Buffer Tutorial</a> for more information. 
 
