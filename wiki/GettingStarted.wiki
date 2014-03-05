@@ -37,6 +37,8 @@ LTCA, Long-Term Certificate Authority, is the responsible authority to issue vou
   * RA_METHOD_NAME = ra.operate
 
 ==LTCA Operational Code== 
+The code numbers below show the request and response type to communicate with the servers. In each request and response, there is a field called: ReqType or ResType. The client identifies a valid Request-Type while the servers replies with the corresponding Response-Type. For example, if you want to receive a Voucher, the client sends 120 in the ReqType of the request while LTCA responses with 121 in the ResType. 
+
 {{{
 REQ_VOUCHER_VEHICLE_TO_LTCA_USING_BOOST                             100
 RES_VOUCHER_LTCA_TO_VEHICLE_USING_BOOST                             101
