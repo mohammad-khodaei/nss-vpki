@@ -112,6 +112,8 @@ if (!stV2LTCA.SerializeToString(&strSerialized)) {
 strSerializedOutputData = encodeBase64(strSerialized, strSerialized.length());
 }}}
 
+As demonstrated here, the protocol buffer message should be serialized and encoded in Base64 format before sending to the servers. 
+
 <BR>
 = Java APIs =
 A simple hint on connecting to the servers in Java: 
