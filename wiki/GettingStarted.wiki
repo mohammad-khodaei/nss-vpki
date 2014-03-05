@@ -9,7 +9,7 @@ Using Google Protocol-Buffer, one can communicate with the system in almost ever
 <a href="http://plugins.netbeans.org/plugin/15724/protocol-buffers-netbeans-plugin">Netbeans</a>, or <a href="https://code.google.com/p/protobuf-dt/">Eclipse</a>. 
 
 
-The interfaces to the PKI is located: <a href="http://code.google.com/p/kth-vespa/source/browse/trunk/interfaces/interfaces.proto">here</a>. Download this .proto file and compile the interface according to your desired language. You can compile and generate the corresponding classes either through the command, or the installed plugin in the IDE. Check <a href="https://developers.google.com/protocol-buffers/docs/tutorials">Protocol Buffer Tutorail</a> for more information. 
+The interfaces to the PKI is located: <a href="http://code.google.com/p/kth-vespa/source/browse/trunk/interfaces/interfaces.proto">here</a>. Download this .proto file and compile the interface according to your desired language. You can compile and generate the corresponding classes either through the command, or the installed plugin in the IDE. Check <a href="https://developers.google.com/protocol-buffers/docs/tutorials">Protocol Buffer Tutorial</a> for more information. 
 
 
 =Communication=
