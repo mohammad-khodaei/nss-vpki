@@ -112,7 +112,8 @@ if (!stV2LTCA.SerializeToString(&strSerialized)) {
 strSerializedOutputData = encodeBase64(strSerialized, strSerialized.length());
 }}}
 
-As demonstrated here, the protocol buffer message should be serialized and encoded in Base64 format before sending to the servers. The details of each field is pinpointed in <a href="http://code.google.com/p/kth-vespa/wiki/Tutorial">Tutorial</a>. 
+As demonstrated here, the protocol buffer message should be serialized and encoded in Base64 format before sending to the servers. Specifies the first parameter in XMLRPC as ReqType while the second parameter as the serialized encoded protocol buffer message.  The details of each field is pinpointed in <a href="http://code.google.com/p/kth-vespa/wiki/Tutorial">Tutorial</a>. 
+
 
 
 <BR>
