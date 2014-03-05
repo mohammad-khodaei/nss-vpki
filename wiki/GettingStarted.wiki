@@ -1,7 +1,7 @@
 #summary One-sentence summary of this page.
 
 = Introduction =
-In order to communicate with VeSPA, you can follow the steps below to configure and setup your client.
+In order to communicate with VeSPA, you can follow the steps below to configure and setup your client. In order to communicate, VeSPA uses XMLRPC, a remote procedure call function. Google protocol buffer is used to serialize, deserialize and the compression on the messages. 
 
 = Protocol Buffer =
 Using Google Protocol-Buffer, one can communicate with the system in almost every language, as stated in <a href="https://developers.google.com/protocol-buffers/docs/reference/other">official website</a>. Before start sending the requests to the PKI, follow this link to read more about Google Protocol Buffer:
