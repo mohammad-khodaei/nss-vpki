@@ -9,7 +9,7 @@ Using Google Protocol-Buffer, one can communicate with the system in almost ever
 <a href="http://plugins.netbeans.org/plugin/15724/protocol-buffers-netbeans-plugin">Netbeans</a>, or <a href="https://code.google.com/p/protobuf-dt/">Eclipse</a>. 
 
 
-The interfaces to the PKI is located: <a href="http://code.google.com/p/kth-vespa/source/browse/trunk/interfaces/interfaces.proto">here</a>.
+The interfaces to the PKI is located: <a href="http://code.google.com/p/kth-vespa/source/browse/trunk/interfaces/interfaces.proto">here</a>. Download this .proto file and compile the interface according to your desired language. You can compile and generate the corresponding classes either through the command, or the installed plugin in the IDE. 
 
 =Communication=
 The communication to VeSPA is through XMLRPC, available for every programming language. The library can be downloaded from <a href="http://xmlrpc-c.sourceforge.net/">xmlrpc-c</a>. A simple example is also availabe in <a href="http://sourceforge.net/p/xmlrpc-c/code/HEAD/tree/trunk/examples/cpp/sample_add_client_complex.cpp">example</a>.
