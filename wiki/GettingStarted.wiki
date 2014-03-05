@@ -112,6 +112,16 @@ if (!stV2LTCA.SerializeToString(&strSerialized)) {
 }
 
 strSerializedOutputData = encodeBase64(strSerialized, strSerialized.length());
+
+
+...
+
+xmlrpc_c::paramList serverMethodParams;
+serverMethodParams.add(xmlrpc_c::value_int(iReqType));
+serverMethodParams.add(xmlrpc_c::value_string(strInputData));
+
+...
+
 }}}
 
 
