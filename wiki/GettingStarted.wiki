@@ -89,8 +89,12 @@ RES_PSNYM_OCSP_PCA_TO_VEHICLE_USING_PROTO_BUFF                      228
 
 
 <BR>
-= C/C++ APIs =
+==
 A simple hint on connecting to the servers in C/C++: 
+As demonstrated here, the protocol buffer message should be serialized and encoded in Base64 format before sending to the servers. Specifies the first parameter in XMLRPC as ReqType while the second parameter as the serialized encoded protocol buffer message.  The details of each field is pinpointed in <a href="http://code.google.com/p/kth-vespa/wiki/Tutorial">Tutorial</a>. 
+
+
+== C/C++ APIs ==
 
 {{{
 interfaces::msgVoucherReq_V2LTCA stV2LTCA;
@@ -112,13 +116,9 @@ if (!stV2LTCA.SerializeToString(&strSerialized)) {
 strSerializedOutputData = encodeBase64(strSerialized, strSerialized.length());
 }}}
 
-As demonstrated here, the protocol buffer message should be serialized and encoded in Base64 format before sending to the servers. Specifies the first parameter in XMLRPC as ReqType while the second parameter as the serialized encoded protocol buffer message.  The details of each field is pinpointed in <a href="http://code.google.com/p/kth-vespa/wiki/Tutorial">Tutorial</a>. 
-
-
 
 <BR>
-= Java APIs =
-A simple hint on connecting to the servers in Java: 
+== Java APIs ==
 
 {{{
 msgVoucherReq_V2LTCA.Builder voucherReq = msgVoucherReq_V2LTCA.newBuilder();
@@ -137,5 +137,4 @@ String response = (String) ltcaClient.call("ltca.operate", reqType, encodedReq);
 }}}
 
 <BR>
-= Python APIs =
-A simple hint on connecting to the servers in Python:
+== Python APIs ==
