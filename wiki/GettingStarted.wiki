@@ -14,8 +14,7 @@ The interfaces to the PKI is located: <a href="http://code.google.com/p/kth-vesp
 
 
 =Communication=
-The communication to VeSPA is through XMLRPC, available for every programming language. The library can be downloaded from <a href="http://xmlrpc-c.sourceforge.net/">xmlrpc-c</a> for C/C++, or 
-<a href="https://code.google.com/p/android-xmlrpc/">android-xmlrpc</a> for Java. A simple example is also availabe in <a href="http://sourceforge.net/p/xmlrpc-c/code/HEAD/tree/trunk/examples/cpp/sample_add_client_complex.cpp">example</a>.
+The communication to VeSPA is through XMLRPC, available for every programming language. The libraries can be downloaded from <a href="http://xmlrpc-c.sourceforge.net/">xmlrpc-c</a> for C/C++, <a href="http://ws.apache.org/xmlrpc/">Apache XML-RPC</a> for Java and <a href="https://code.google.com/p/android-xmlrpc/">android-xmlrpc</a> for Android. A simple example is also availabe in <a href="http://sourceforge.net/p/xmlrpc-c/code/HEAD/tree/trunk/examples/cpp/sample_add_client_complex.cpp">example</a>.
 
 
 ==Servers Details== 
