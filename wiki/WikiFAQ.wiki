@@ -16,6 +16,7 @@
 
 <BR>
 = ERRORS =
+kth-vespa returns appropriate errors for incorrect requests. Here, you can figure out some hints in case of receiving different errors. 
 
 ===ERR_CODE_DESERIALIZATION_FAILED_USING_PROTO_BUFF===
 This error indicates that at least one of the required fields is not fulfilled. Check the request to see all the required fields are properly fulfilled. 
