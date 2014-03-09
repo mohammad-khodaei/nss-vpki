@@ -95,6 +95,8 @@ LTCA_ID = 1002
 RA_ID  = 1003
 <BR>
 
+Nonce is an Integer random value (0-65535). Time-stamp identifies also the current time-stamp when the request is sent. 
+
 <BR> 
 ===Voucher===
 Obtaining an X.509 certificate requires getting a voucher from LTCA. Having sent the voucher request to the server, a valid voucher is sent to your kth email, be used in obtaining X.509 certificate. 
