@@ -89,6 +89,8 @@ Google Protocol Buffer is used to connect.
 ===Voucher===
 Obtaining an X.509 certificate requires getting a voucher from LTCA. Having sent the voucher request to the server, a valid voucher is sent to your kth email, be used in obtaining X.509 certificate. 
 
+*NOTE: Each email address can be used to obtain a voucher. Store the generated private key when the request is sent. If you lost your certificate, you can contact the admins of the Wiki to receive your certificate. Later on, you can also fetch your certificate from LDAP directory. (LDAP is not supported yet.)*
+
 The voucher request format is defined as below:
 {{{
 message msgVoucherReq_V2LTCA {
