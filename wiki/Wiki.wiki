@@ -8,5 +8,7 @@
 = Details =
 
 
-
-Department of Communication Network - KTH The Royal Institute of Technology, Stockholm, Sweden
+Networked Systems Security (NSS), <BR>
+Department of Communication Network <BR>
+KTH The Royal Institute of Technology, <BR>
+Stockholm, Sweden
