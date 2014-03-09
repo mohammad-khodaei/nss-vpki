@@ -10,11 +10,6 @@
 
 
 <BR>
-=== Where to start? ===
-
-
-
-<BR>
 = ERRORS =
 kth-vespa returns appropriate errors for incorrect requests. Here, you can figure out some hints in case of receiving different errors. 
 
