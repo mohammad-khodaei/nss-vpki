@@ -1,11 +1,9 @@
 #summary One-sentence summary of this page.
 
 = Introduction =
+This wiki is ... 
 
 
-
-
-= Details =
 
 
 Networked Systems Security (NSS), <BR>
