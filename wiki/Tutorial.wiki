@@ -83,7 +83,7 @@ RES_PSNYM_OCSP_PCA_TO_VEHICLE_USING_PROTO_BUFF                      228
 
 <BR> 
 ==Interfaces==
-Google Protocol Buffer is used to connect. 
+Google Protocol Buffer is used to connect to the servers. In the following, you can find the interfaces to the servers for different services. *Take into consideration that the required fields are indeed needed to be fulfilled. Otherwise, the serialization will be failed on the server.*
 
 <BR> 
 ===Voucher===
