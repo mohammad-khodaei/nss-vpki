@@ -148,6 +148,9 @@ message msgX509CertReq_V2LTCA {
 };
 }}}
 
+Fulfill "strProofOfPossessionVoucher" with the Voucher, sent to your email. iLTCAIdRange is 1002. strX509CertReq is the X.509 certificate signing request. 
+<BR> 
+
 The response format to receive X.509 certificate is defined as: 
 {{{
 message msgX509CertRes_LTCA2V {
