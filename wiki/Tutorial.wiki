@@ -150,7 +150,7 @@ message msgX509CertRes_LTCA2V {
 };
 }}}
 
-*NOTE: For the time being, LTCA supports issuing Elliptic Curve Digital Signature Algorithm (ECDSA). Take into consideration that X.509 certificates with RSA keys are not supported by LTCA. For further understanding on differences between ECDSA and RSA, you can read <a href="http://www.ijcaonline.org/volume2/number2/pxc387876.pdf">"Implementation of Elliptic Curve Digital Signature Algorithm"</a> or <a href="http://palms.ee.princeton.edu/PALMSopen/potlapally03analyzing.pdf">"Analyzing the Energy Consumption of Security Protocols"</a>. Openssl and Bouncy Castle support ECDSA with appropriate curve. You can use NID_X9_62_prime256v1 for the curve.*
+*NOTE: For the time being, LTCA supports issuing X.509 certificates with Elliptic Curve Digital Signature Algorithm (ECDSA). Take into consideration that X.509 certificates with RSA keys are not supported by LTCA. For further understanding on differences between ECDSA and RSA, you can read <a href="http://www.ijcaonline.org/volume2/number2/pxc387876.pdf">"Implementation of Elliptic Curve Digital Signature Algorithm"</a> or <a href="http://palms.ee.princeton.edu/PALMSopen/potlapally03analyzing.pdf">"Analyzing the Energy Consumption of Security Protocols"</a>. Openssl and Bouncy Castle support ECDSA with appropriate curve. You can use NID_X9_62_prime256v1 for the curve.*
 
 <BR> 
 ===Ticket===
