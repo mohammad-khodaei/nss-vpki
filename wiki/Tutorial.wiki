@@ -87,14 +87,16 @@ Google Protocol Buffer is used to connect to the servers. In the following, you 
 
 ===General Info for the Interfaces===
 Here, you can find information regarding the fields:
+<BR> 
 
-PCA_ID  = 1001
-<BR>
-LTCA_ID = 1002
-<BR>
-RA_ID  = 1003
-<BR>
+|| *Fields* || *Values* ||
+|| PCA_ID || 1001 ||
+|| LTCA_ID || 1002 ||
+|| RA_ID || 1003 ||
+|| iNonce || 0-65535 ||
+|| tTimeStamp || long int ||
 
+<BR> 
 Nonce is an Integer random value (0-65535). Time-stamp identifies also the current time-stamp when the request is sent. 
 
 <BR> 
