@@ -10,20 +10,28 @@
 <BR>
 
 =Hints on different steps=
+Here, you can find some hints on different steps. 
 
+<BR><BR>
 ===Obtaining Voucher===
 
 
+<BR><BR>
 ===Obtaining X.509 Certificate===
 
+
+
+<BR><BR>
 ===Obtaining Ticket===
 
 
+
+<BR><BR>
 ===Obtaining Pseudonym===
 
 
 <BR>
-= ERRORS =
+=ERRORS=
 kth-vespa returns appropriate errors for incorrect requests. Here, you can figure out some hints in case of receiving different errors. 
 
 ===ERR_CODE_DESERIALIZATION_FAILED_USING_PROTO_BUFF===
