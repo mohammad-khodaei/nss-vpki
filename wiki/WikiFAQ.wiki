@@ -9,17 +9,17 @@
 
 <BR>
 
-= Hints on different steps =
+=Hints on different steps=
 
-== Obtaining Voucher ==
-
-
-== Obtaining X.509 Certificate ==
-
-== Obtaining Ticket ==
+===Obtaining Voucher===
 
 
-== Obtaining Pseudonym ==
+===Obtaining X.509 Certificate===
+
+===Obtaining Ticket===
+
+
+===Obtaining Pseudonym===
 
 
 <BR>
