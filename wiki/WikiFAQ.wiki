@@ -5,8 +5,21 @@
 
 
 <BR>
-=== Which libraries to install? ===
+= Which libraries to install? =
 
+<BR>
+
+= Hints on different steps =
+
+== Obtaining Voucher ==
+
+
+== Obtaining X.509 Certificate ==
+
+== Obtaining Ticket ==
+
+
+== Obtaining Pseudonym ==
 
 
 <BR>
