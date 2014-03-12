@@ -18,7 +18,8 @@ Here, you can find some hints on different steps.
 
 <BR><BR>
 ===Obtaining X.509 Certificate===
-
+  * Include your email address into the CSR as: "emailAddress"
+  * 
 
 
 <BR><BR>
