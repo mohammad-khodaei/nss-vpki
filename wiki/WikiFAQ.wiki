@@ -14,6 +14,8 @@ For the Java developers, there might be a mismatch on using different jar files.
 <BR>
   *xmlrpc-client-3.1.3.jar
   *xmlrpc-common-3.1.3.jar
+You can download them from <a href="http://grepcode.com/snapshot/repo1.maven.org/maven2/org.apache.xmlrpc/xmlrpc-client/3.1.3">here</a>.
+
 
 
 <BR><BR>
