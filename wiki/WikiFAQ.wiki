@@ -29,6 +29,8 @@ Here, you can find some hints on different steps.
 ===Obtaining X.509 Certificate===
   * Include your email address into the CSR as: _"emailAddress"_
   * Make sure the CSR is properly generated. It starts with _"-----BEGIN CERTIFICATE REQUEST-----"_ and ends with _"-----END CERTIFICATE REQUEST-----"_.
+  *
+  *
 
 
 <BR><BR>
