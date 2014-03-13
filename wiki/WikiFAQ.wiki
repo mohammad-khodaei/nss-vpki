@@ -22,7 +22,7 @@ Here, you can find some hints on different steps.
 
 <BR><BR>
 ===Obtaining Voucher===
-
+  * Normally, the vouchers are sent immediately to the emails. If it takes more than the usual time, contact us to figure out the problem.
 
 <BR><BR>
 ===Obtaining X.509 Certificate===
