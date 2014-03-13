@@ -8,10 +8,9 @@
 = Which libraries to install? =
 For the *Java developers*, there might be a mismatch on using different jar files. Based on the feedback from other users, these libraries work perfectly fine: 
 
-  * apache-xmlrpc-3.1.3
+  * apache-xmlrpc-3.1.3 (included xmlrpc-client and xmlrpc-common)
   * apache common codec 1.9  [only use the Base64 library
-  * xmlrpc-client-3.1.3.jar
-  * xmlrpc-common-3.1.3.jar
+
 You can download them from <a href="http://grepcode.com/snapshot/repo1.maven.org/maven2/org.apache.xmlrpc/xmlrpc-client/3.1.3">here</a>.
 
 
