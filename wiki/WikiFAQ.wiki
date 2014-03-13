@@ -6,8 +6,17 @@
 
 <BR>
 = Which libraries to install? =
+For the Java developers, there might be a mismatch on using different jar files. Based on the feedback from other users, this libraries work perfectly fine: 
+
+  *apache-xmlrpc-3.1.3
+  *apache common codec 1.9  [only use the Base64 library
 
 <BR>
+  *xmlrpc-client-3.1.3.jar
+  *xmlrpc-common-3.1.3.jar
+
+
+<BR><BR>
 
 =Hints on different steps=
 Here, you can find some hints on different steps. 
