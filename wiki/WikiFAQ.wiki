@@ -5,6 +5,7 @@
 Here, some of the questions asked by other students are provided to facilitate your progress if you encounter the same problem. 
 
 
+
 <BR>
 = Which libraries to install? =
 For the *Java developers*, there might be a mismatch on using different jar files. Based on the feedback from other users, these libraries work perfectly fine: 
@@ -44,6 +45,11 @@ Here, you can find some hints on different steps.
 ===Obtaining Pseudonym===
 
 
+<BR><BR>
+===Revocation===
+The PKI does not provide CRL or OCSP for X.509 certificates. It only provides them for anonymous credentials (the pseudonyms).
+
+
 <BR>
 =ERRORS=
 kth-vespa returns appropriate errors for incorrect requests. Here, you can figure out some hints in case of receiving different errors. 
@@ -57,5 +63,5 @@ The following message shows that the LTCA server is properly running if you clic
 
 *The Xmlrpc-c CGI server was unable to process your request. It could not process it even enough to generate an XML-RPC fault response.*
 
-===ERR_CODE_DESERIALIZATION_FAILED_USING_PROTO_BUFF===
+==What does ERR_CODE_DESERIALIZATION_FAILED_USING_PROTO_BUFF error mean?==
 This error indicates that at least one of the required fields is not fulfilled. Check the request to see if all the required fields are properly fulfilled. 
