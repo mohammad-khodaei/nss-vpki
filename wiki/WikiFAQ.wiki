@@ -2,6 +2,7 @@
 
 = Introduction =
 
+Here, some of the questions asked by other students are provided to facilitate your progress if you encounter the same problem. 
 
 
 <BR>
@@ -44,6 +45,14 @@ Here, you can find some hints on different steps.
 <BR>
 =ERRORS=
 kth-vespa returns appropriate errors for incorrect requests. Here, you can figure out some hints in case of receiving different errors. 
+
+==How to check if the servers are working==
+The following message shows that the LTCA server is properly running if you click on <a href="https://172.31.212.119/cgi-bin/ltca">LTCA</a>
+
+
+*405 Method must be POST*
+
+*The Xmlrpc-c CGI server was unable to process your request. It could not process it even enough to generate an XML-RPC fault response.*
 
 ===ERR_CODE_DESERIALIZATION_FAILED_USING_PROTO_BUFF===
 This error indicates that at least one of the required fields is not fulfilled. Check the request to see all the required fields are properly fulfilled. 
