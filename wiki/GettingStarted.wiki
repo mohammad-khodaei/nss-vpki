@@ -24,8 +24,8 @@ The communication to VeSPA is through XMLRPC, available for every programming la
 LTCA, Long-Term Certificate Authority, is the responsible authority to issue voucher, ticket, and X.509 certificates. PCA, Pseudonymous Certificate Authority, is responsible for issuing pseudonymous certificates. 
 
  * LTCA
-  * 172.31.212.101
-  * LTCA_SERVER_URL  = https://172.31.212.101/cgi-bin/ltca
+  * 172.31.212.119
+  * LTCA_SERVER_URL  = https://172.31.212.119/cgi-bin/ltca
   * LTCA_METHOD_NAME = ltca.operate
 
 
