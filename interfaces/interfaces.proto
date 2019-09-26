@@ -153,9 +153,10 @@ message msgX509CertReq_V2LTCA {
 	required int32 iReqType = 1 [default = -1];
 	required int32 iLTCAIdRange = 2 [default = -1];
 	required string strProofOfPossessionVoucher = 3 [default = ""];
-	required string strX509CertReq = 4 [default = ""];
-	required int32 iNonce = 5 [default = -1];
-	required int64 tTimeStamp = 6 [default = -1];
+        required string strDNSExtension = 4 [default = ""];
+	required string strX509CertReq = 5 [default = ""];
+	required int32 iNonce = 6 [default = -1];
+	required int64 tTimeStamp = 7 [default = -1];
 };
 /*****************************************************************************/
 ///          X509 Certificate Response from LTCA to Vehicle
@@ -307,14 +308,16 @@ message msgPsnymKeysStorage {
 message msgTicketReq {
 	required int32 iReqType = 1 [default = -1];
 	optional msgSignerInfo stSigner = 2;
-	required uint32 uiServices = 3 [default = 0]; // The service specifies what the ticket holder can obtain
-	required uint32 uiPsnymCertNoRequest = 4 [default = 0];
+	required uint32 uiServices = 3 [default = 0]; // The service specifies which services the ticket holder can obtain; For now, set it to zero.
+	required uint32 uiPsnymCertNoRequest = 4 [default = 0]; // This specifies the maximum number of pseudonyms each ticket can be used for. 
 	required int32 iLTCAIdRange = 5 [default = -1];
 	required int32 iPCAIdRange = 6 [default = -1];
 	required int32 iNonce = 7 [default = -1];
 	required int64 tTimeStamp = 8 [default = -1];
-        required string strX509Cert = 9[default = ""];
-	optional msgSignature stSign = 10;
+        required int64 tPsnymStartTime = 9 [default = -1];
+        required int64 tPsnymEndTime = 10 [default = -1];
+        required string strX509Cert = 11[default = ""];
+	optional msgSignature stSign = 12;
 };
 
 /*****************************************************************************/
@@ -476,7 +479,7 @@ message msgToBeSignedCRL {
 	required uint64 tStartPeriod = 5 [default = 0];
 	required uint64 tIssueDate = 6 [default = 0];
 	required uint64 tNextCRL = 7 [default = 0];
-        required uint64 iRevokedPsnymNo = 8 [default = 0];
+        required uint64 uiRevokedPsnymNo = 8 [default = 0];
 	repeated string strRevokedPsnymCertSerialNo = 9;
 	required msgIDAndDate stEntriesIDAndDate = 10; // [2^64 - 1];
 };
@@ -511,7 +514,6 @@ message msgPsnymCRLReq_V2PCA {
 	optional msgSignature stSign = 10;
 };
 
-
 /// Pseudonym CRL Response from PCA to Vehicle to fetch the latest version of CRL
 message msgPsnymCRLRes_PCA2V {
 	required int32 iReqType = 1 [default = -1];
@@ -520,7 +522,8 @@ message msgPsnymCRLRes_PCA2V {
 	required int32 iNonce = 4 [default = -1];
 	required int64 tTimeStamp = 5 [default = -1];
 	required msgError stErrInfo = 6;
-	required msgWAVECRL stWAVECRLRes = 7;
+	//optional msgWAVECRL stWAVECRLRes = 7;
+        optional string strWAVECRLRes = 7;
 	optional msgSignature stSign = 8;
 };
 
@@ -532,7 +535,7 @@ message msgPsnymOCSPReq_V2PCA {
 	required int32 iPCAIdRange = 3 [default = -1];
 	required int32 iRegionId = 4 [default = -1];
 	required uint32 uiNoOfPsnymsToBeChecked = 5 [default = 0];
-	repeated string strPsnymsToBeChecked = 6;
+	repeated string strPsnymsSerialNoToBeChecked = 6;
 	required int32 iPsnymCertLen = 7 [default = -1];
 	required string strPsnymCert = 8 [default = ""];
 	required int32 iNonce = 9 [default = -1];
@@ -637,12 +640,13 @@ message msgPsnymResolutionReq_Police2RA {
 	required int32 iReqType = 1 [default = -1];
 	optional msgSignerInfo stSigner = 2;
 	required uint32 uiNoOfPsnymsToBeResolved = 3 [default = 0];
-	message msgPsnymResolution {
+	/*message msgPsnymResolution {
 		required int32 iPsnymCertLen = 1 [default = -1];
 		required string strPsnymCert = 2 [default = ""];
-	};
+	};*/
 
-	repeated msgPsnymResolution pstPsnymResolutionInfo = 4;
+	//repeated msgPsnymResolution pstPsnymResolutionInfo = 4;
+        repeated string strPsnymsSerialNoToBeResolved = 4;
 	required int32 iPoliceId = 5 [default = -1];
 	required int32 iRAIdRange = 6 [default = -1];
 	required int32 iNonce = 7 [default = -1];
@@ -656,12 +660,12 @@ message msgPsnymResolutionReq_RA2PCA {
 	required int32 iReqType = 1 [default = -1];
 	optional msgSignerInfo stSigner = 2;
 	required uint32 uiNoOfPsnymsToBeResolved = 3 [default = 0];
-	message msgPsnymResolution {
+	/*message msgPsnymResolution {
 		required int32 iPsnymCertLen = 1 [default = -1];
 		required string strPsnymCert = 2 [default = ""];
-	};
-
-	repeated msgPsnymResolution pstPsnymResolutionInfo = 4;
+	};*/
+        repeated string strPsnymsSerialNoToBeResolved = 4;
+	//repeated msgPsnymResolution pstPsnymResolutionInfo = 4;
 	required int32 iRAIdRange = 5 [default = -1];
 	required int32 iPCAIdRange = 6 [default = -1];
 	required int32 iNonce = 7 [default = -1];
@@ -719,8 +723,9 @@ message msgPsnymResolutionRes_LTCA2RA {
 	message msgPsnymResolution {
 		required string strTicketSerialNo = 1 [default = ""];
 		required string strVehX509CertSerialNo = 2 [default = ""];
-		required int32 iVLTCSize = 3 [default = -1];
-		required string strVehX509Cert = 4 [default = ""];
+		//required int32 iVLTCSize = 3 [default = -1];
+                required string strTicketIdentifiableKey = 3 [default = ""];
+		//required string strVehX509Cert = 4 [default = ""];
 		required msgError stErrInfo = 5;
 	};
 
@@ -740,12 +745,13 @@ message msgPsnymResolutionRes_RA2Police {
 	optional msgSignerInfo stSigner = 2;
 	required uint32 uiNoOfPsnymsToBeResolved = 3 [default = 0];
 	message msgPsnymResolution {
-		required int32 iPsnymCertLen = 1 [default = -1];
-		required string strPsnymCert = 2 [default = ""];
-		required string strVehX509CertSerialNo = 3 [default = ""];
-		required int32 iVLTCSize = 4 [default = -1];
-		required string strVehX509Cert = 5 [default = ""];
-		required msgError stErrInfo = 6;
+		//required int32 iPsnymCertLen = 1 [default = -1];
+		//required string strPsnymCert = 2 [default = ""];
+                required string strPsnymSerialNo = 1  [default = ""];
+		required string strVehX509CertSerialNo = 2 [default = ""];
+		//required int32 iVLTCSize = 3 [default = -1];
+		//required string strVehX509Cert = 4 [default = ""];
+		required msgError stErrInfo = 3;
 	};
 
 	repeated msgPsnymResolution pstPsnymResolutionInfo = 4;
@@ -1165,4 +1171,65 @@ message msgPsnymProvisionValidationRes_PVR2PCA {
 	required msgError stErrInfo = 6;
 	optional msgSignature stSign = 7;
 };
+
+//message msgPseuResolutionReq_Police2RA{
+//int iReqType;
+//    SignerInfo signer;
+//    unsigned int uiNoOfPseudonymsToBeResolved;
+//
+//    struct stPseudoResolution {
+//        int iPsnymCertLen;
+//        std::string strPsnymCert;
+//
+//        stPseudoResolution() {
+//            iPsnymCertLen = INVALID_VALUE;
+//            strPsnymCert = "";
+//        }
+//    };
+//    stPseudoResolution* pstPseudoResolutionInfo;
+//
+//    int iPoliceId;
+//    int iRAIdRange;
+//    int iNonce;
+//    time_t tTimeStamp;
+//    stSignature stSign;
+//}
+
+//
+/*
+
+ message msgRevokeTicketReq_P2RA {
+	required int32 iReqType = 1 [default = -1];
+	optional msgSignerInfo stSigner = 2;
+	required uint32 chPolicyId = 3 [default = 0];
+	//required string strECSignerPubKey = 4 [default = ""];
+	required uint32 uiNoOfTicketsToBeRevoked = 5 [default = 0];
+	repeated string strRevokedTickets = 6;
+	required int32 iNonce = 7 [default = -1];
+	required int64 tTimeStamp = 8 [default = -1];
+	optional msgSignature stSign = 9;
+}
+
+message msgRevokeTicketRes_RA2P{
+required int32 iReqType = 1 [default = -1];
+    optional msgSignerInfo stSigner = 2;
+    required uint32 uiNoOfTicketsToBeRevoked=3[default = 0];
+  required   uint32 uiNoOfSuccessfullyRevokedTicket=4 [default = 0];
+    stError* pstRevokedTicketErrInfo;
+    int iNonce;
+    time_t tTimeStamp;
+    stError stErrInfo;
+    stSignature stSign;
+}
+message msgRevokeX509CertRes_LTCA2RA{
+required int32 iReqType = 1 [default = -1];
+	optional msgSignerInfo stSigner = 2;
+	required uint32 uiNoOfPseudonymsToBeRevoked = 3 [default = 0];
+    required uint32 uiNoOfSuccessfullyRevokedX509Cert;
+    stError* pstRevokedX509CertErrInfo;
+    int iNonce;
+    time_t tTimeStamp;
+    stError stErrInfo;
+    stSignature stSign;
+}*/
 
