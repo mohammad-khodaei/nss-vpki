@@ -153,10 +153,12 @@ message msgX509CertReq_V2LTCA {
 	required int32 iReqType = 1 [default = -1];
 	required int32 iLTCAIdRange = 2 [default = -1];
 	required string strProofOfPossessionVoucher = 3 [default = ""];
-        required string strDNSExtension = 4 [default = ""];
-	required string strX509CertReq = 5 [default = ""];
-	required int32 iNonce = 6 [default = -1];
-	required int64 tTimeStamp = 7 [default = -1];
+	required string strDNSExtension = 4 [default = ""];
+	optional string strKeyUsage = 5 [default = ""];
+	optional string strExtendedKeyUsage = 6 [default = ""];
+	required string strX509CertReq = 7 [default = ""];
+	required int32 iNonce = 8 [default = -1];
+	required int64 tTimeStamp = 9 [default = -1];
 };
 /*****************************************************************************/
 ///          X509 Certificate Response from LTCA to Vehicle
