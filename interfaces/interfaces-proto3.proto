@@ -1,0 +1,1237 @@
+syntax = "proto3";
+
+package interfaces;
+
+option java_package = "its.service.interfaces";
+//enum Constants {
+//	INVALID_VALUE = -1;
+//}
+/*****************************************************************************/
+/// The request profile keeps track of the requests using the incoming identity to respond to the appropriate requests accordingly
+message msgReqProfile {
+	string strReqIdentification = 1;
+	int32 iNonce = 2;
+};
+/***************************** FORMAT DEFINITIONS ****************************/
+///       Elliptic-Curve Signature Format Based on IEEE 1609.2 Standard
+message msgSignature {
+	optional uint32 uiCurveOrderOctets = 1;
+	optional uint32 uiSignLen = 2;
+	optional string strSignature = 3;
+};
+/*****************************************************************************/
+///                 Error Code and Message Description Format
+message msgError {
+	int32 iErrCode = 1;
+	string strErrMsgDes = 2;
+};
+/*****************************************************************************/
+///             EC Public Key Format Based on IEEE 1609.2 Standard
+message msgECPublicKey {
+	uint32 uiPsnymPublicKeyLen = 1;
+	string strPsnymPublicKey = 2;
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// nsSignerIdentifierType Format Based on IEEE 1609.2 Standard
+message msgSignerIdentifierType {
+	enum SignerIdentifierType {
+		certificate = 0;
+		certificateDigest = 1;
+		certificateChain = 2;
+		self = 4;
+		// (2^8-1)
+	};
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// nsSubType Format Based on IEEE 1609.2 Standard
+message msgSubType {
+	enum SubjectType {
+		wsa_ca1 = 0;
+		ca = 1;
+		wsa_signer = 2;
+		rsu = 3;
+		psobu = 4;
+		obu_identified = 5;
+		crl_signer = 6;
+		csr_signer = 8;
+		root_ca = 9;
+		//(2^8 - 1)
+	};
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// nsSubTypeFlags Format Based on IEEE 1609.2 Standard
+message msgSubTypeFlags {
+	enum SubjectTypeFlags {
+		wsa_ca = 0;
+		ca = 1;
+		wsaSigner = 2;
+		rsu = 3;
+		psobu = 4;
+		obuIdentified = 5;
+		crlSigner = 6;
+		csrSigner = 8;
+	};
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// nsAIDType Format Based on IEEE 1609.2 Standard
+message msgAIDType {
+	enum AIDType {
+		fullySpecified = 0;
+		matchAnyAcm = 1;
+		fromIssuer = 2;
+		//(2^8-1)
+	};
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// nsRegionType Format Based on IEEE 1609.2 Standard
+message msgRegionType {
+	enum RegionType {
+		fromIssuer = 0;
+		circle = 1;
+		rectangle = 2;
+		polygon = 3;
+		none = 4;
+		//(2^8 - 1)
+	};
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// nsWSASignerScope Format Based on IEEE 1609.2 Standard
+message msgWSASignerScope {
+	enum WSASignerScope {
+		wsaSignerAdvertisingSpecificApplications = 0;
+		wsaSignerOperateWithinCertainArea = 1;
+		wsaSignerUniqueIdentifyingName = 2;
+	};
+};
+
+///////////////////////////////////////////////////////////////////////////////
+///          nsRequestScopeType Format Based on IEEE 1609.2 Standard
+
+message msgRequestScopeType {
+	enum RequestScopeType {
+		specifiedInRequest = 0;
+		specifiedByCA = 1;
+		// (2^8 - 1)
+	};
+};
+
+/*****************************************************************************/
+///           Voucher Request from Vehicle to LTCA
+
+message msgVoucherReq_V2LTCA {
+	int32 iReqType = 1;
+  string strUserName = 2;
+  string strPwd = 3;
+	string strEmailAddress = 4;
+	string strCaptcha = 5; // A CAPTCHA (an acronym for "Completely Automated Public Turing test to tell Computers and Humans Apart")
+	int32 iNonce = 6;
+	int64 tTimeStamp = 7;
+};
+/*****************************************************************************/
+///          Voucher Response from LTCA to Vehicle
+
+message msgVoucherRes_LTCA2V {
+	int32 iReqType = 1;
+  optional msgSignerInfo stSigner = 2;
+	string strVoucher = 3;
+	int32 iNonce = 4;
+	int64 tTimeStamp = 5;
+	msgError stErrInfo = 6;
+	optional msgSignature stSign = 7;
+};
+
+///////////////////////////////////////////////////////////////////////////////
+
+/*****************************************************************************/
+///            X509 Certificate Request from Vehicle to LTCA
+
+message msgX509CertReq_V2LTCA {
+	int32 iReqType = 1;
+	int32 iLTCAIdRange = 2;
+	string strProofOfPossessionVoucher = 3;
+  string strDNSExtension = 4;
+	optional string strKeyUsage = 5;
+	optional string strExtendedKeyUsage = 6;
+	string strX509CertReq = 7;
+	int32 iNonce = 8;
+	int64 tTimeStamp = 9;
+};
+/*****************************************************************************/
+///          X509 Certificate Response from LTCA to Vehicle
+message msgX509CertRes_LTCA2V {
+	int32 iReqType = 1;
+  optional msgSignerInfo stSigner = 2;
+	string strReqIdentification = 3;
+	string strX509Cert = 4;
+	int32 iNonce = 5;
+	int64 tTimeStamp = 6;
+	msgError stErrInfo = 7;
+	optional msgSignature stSign = 8;
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// nsCRLType Format Based on IEEE 1609.2 Standard
+message msgCRLType {
+	enum CRLType {
+		idOnly = 0;
+		idAndExpiry = 1;
+		//(2^8 - 1)
+	};
+};
+
+/*****************************************************************************/
+///        2-Dimension Location Format Based on IEEE 1609.2 Standard
+message msgTwoDLocation {
+	int32 latitude = 1;
+	int32 longitude = 2;
+};
+
+/*****************************************************************************/
+///              CircularRegion Format Based on IEEE 1609.2 Standard
+message msgCircularRegion {
+	msgTwoDLocation stCenter = 1;
+	uint32 radius = 2;
+};
+
+/*****************************************************************************/
+///              RectangularRegion Format Based on IEEE 1609.2 Standard
+message msgRectangularRegion {
+	msgTwoDLocation stUpperLeft = 1;
+	msgTwoDLocation stLowerRight = 2;
+};
+
+/*****************************************************************************/
+///              ApplicationID Format Based on IEEE 1609.2 Standard
+message msgApplicationID {
+	msgAIDType.AIDType type = 1;
+	uint32 acid = 2;
+	uint32 acm = 3; //[(2^8) - 1];
+};
+
+/*****************************************************************************/
+///            OBUIdentifiedScope Format Based on IEEE 1609.2 Standard
+message msgOBUIdentifiedScope {
+	uint32 certSpecificData = 1; //[(2^16) - 1];
+	msgApplicationID stAppID = 2; // [(2^16) - 1];
+};
+
+/*****************************************************************************/
+///              GeographicRegion Format Based on IEEE 1609.2 Standard
+message msgGeographicRegion {
+	msgRegionType.RegionType regionType = 1;
+};
+
+/*****************************************************************************/
+///              IdentifiedScope Format Based on IEEE 1609.2 Standard
+message msgIdentifiedScope {
+	uint32 subjectName = 1; //[(2^8) - 1];
+	msgApplicationID stAppID = 2; // [(2^16) - 1];
+	msgGeographicRegion stGeoRegion = 3;
+};
+
+/*****************************************************************************/
+///              AppIDAndPriority Format Based on IEEE 1609.2 Standard
+message msgAppIDAndPriority {
+	msgAIDType.AIDType type = 1; // [default = fullySpecified]
+	uint32 acid = 2;
+	uint32 acm = 3; // [(2^8) - 1];
+	uint32 maxPriority = 4;
+};
+
+/*****************************************************************************/
+///                CAScope Format Based on IEEE 1609.2 Standard
+message msgCAScope {
+	msgSubTypeFlags.SubjectTypeFlags TF = 1; // [default = wsa_ca]
+	msgApplicationID stAppID = 2;
+	msgAppIDAndPriority stAppsAndPriorities = 3; // [(2^16) - 1];
+	msgGeographicRegion stGeoRegion = 4;
+};
+
+/*****************************************************************************/
+///              CertSpecificData Format Based on IEEE 1609.2 Standard
+message msgCertSpecificData {
+	msgSubType.SubjectType subjectType = 1; // [default = wsa_ca1]
+	msgCAScope scopeCA = 2;
+	uint32 responsibleCrlSeries = 3; // [(2^16) - 1];
+	msgWSASignerScope.WSASignerScope wsaScope = 4; // [default = wsaSignerAdvertisingSpecificApplications]
+	msgIdentifiedScope scopeId = 5;
+	msgOBUIdentifiedScope scopeOBU = 6;
+};
+
+/*****************************************************************************/
+///        ToBeSignedWAVECertificate Format Based on IEEE 1609.2 Standard
+message msgToBeSignedWAVECertificate {
+	uint32 uiCertificateVersion = 1;
+	msgSubType.SubjectType subjectType = 2; // [default = wsa_ca1]
+	int32 iSignerId = 3; // [8];
+	msgCertSpecificData stCertScope = 4;
+	uint32 uiCrlSeries = 5;
+	string strPsnymCertSerialNo = 6;
+	string strPsnymCertIdentifiableKey = 7;
+	int64 tIsValidFrom = 8;
+	int64 tIsValidTo = 9;
+	msgECPublicKey stPsnymPublicKey = 10;
+};
+
+/*****************************************************************************/
+///              stPsnymCertFormat Format Based on IEEE 1609.2 Standard
+message msgPsnymCertFormat {
+	uint32 uiCertificateVersion = 1;
+	msgToBeSignedWAVECertificate stCertificate = 2;
+	optional msgSignature stSign = 3;
+};
+
+/*****************************************************************************/
+///              SignerInfo Format Based on IEEE 1609.2 Standard
+message msgSignerInfo {
+	msgSignerIdentifierType.SignerIdentifierType type = 1;
+	string strCertificate = 2;
+	optional string strDigest = 3;
+	optional string strCertificatesChain = 4;
+};
+
+/*****************************************************************************/
+/// stPsnymKeysStorage Format contains PRIVATE-KEY, stored on the vehicle storage
+message msgPsnymKeysStorage {
+	int32 iPsnymPrivateKeyLen = 1;
+	string strPsnymPrivateKey = 2;
+	msgPsnymCertFormat stPsnymCert = 3;
+};
+
+/*****************************************************************************/
+//**************************** Obtaining Ticket ******************************/
+/*****************************************************************************/
+/*****************************************************************************/
+///        Ticket Request Format from Vehicle to LTCA to Obtain a Ticket
+message msgTicketReq {
+	int32 iReqType = 1;
+	optional msgSignerInfo stSigner = 2;
+	uint32 uiServices = 3; // The service specifies which services the ticket holder can obtain; For now, set it to zero.
+	uint32 uiPsnymCertNoRequest = 4; // This specifies the maximum number of pseudonyms each ticket can be used for.
+	int32 iLTCAIdRange = 5;
+	int32 iPCAIdRange = 6;
+	int32 iNonce = 7;
+	int64 tTimeStamp = 8;
+  int64 tPsnymStartTime = 9;
+  int64 tPsnymEndTime = 10;
+  string strX509Cert = 11;
+	optional msgSignature stSign = 12;
+};
+
+/*****************************************************************************/
+/// Foreign Ticket Request Format from Foreign Vehicle to LTCA to Obtain a Ticket
+message msgForeignTicketReq {
+	int32 iReqType = 1;
+	optional msgSignerInfo stSigner = 2;
+	uint32 uiServices = 3; // The service specifies what the ticket holder can obtain
+	int32 iNativeLTCACertLength = 6;
+	string strNativeLTCACert = 7;
+	int32 iNativeTicketLength = 8;
+	string strNativeTicket = 9;
+	uint32 uiPsnymCertNoRequest = 10;
+	int32 iNonce = 11;
+	int64 tTimeStamp = 12;
+	optional msgSignature stSign = 13;
+};
+
+/*****************************************************************************/
+message msgVehicleAttributes {
+	uint32 chRole = 1;
+  uint32 uiServices = 2; // The service specifies what the Ticket holder can obtain
+  uint32 chTypeOfVehicle = 3;
+  uint32 chPolicyId = 4;
+};
+
+/*****************************************************************************/
+/// Ticket Format, Used to Obtain Pseudonym Certificates from PCA. This is the structure to represent a valid Ticket, issued by LTCA, to be verified by PCA. This Ticket has to be sent from the Vehicle to the PCA.
+message msgTicketFormat {
+	int32 iTicketType = 1;
+	optional msgSignerInfo stSigner = 2;
+	string strTicketSerialNo = 3;
+	string strTicketIdentifiableKey = 4;
+	int32 iLTCAIdRange = 5;
+	int32 iPCAIdRange = 6; // PCA Id range identifies to whom you can sent the request
+	uint32 uiMaxNoPsnymCert = 7;
+	msgVehicleAttributes stVehicleRole = 8;
+	bool bIsForeignTicket = 9;
+	int64 tTicketStartTime = 10;
+	int64 tTicketLifeTime = 11;
+	int64 tPsnymStartTime = 12;
+	int64 tPsnymExpiryTime = 13;
+	optional msgSignature stSign = 14;
+};
+
+/*****************************************************************************/
+///           Ticket Response Format Sent from LTCA to Vehicle
+message msgTicketRes {
+	int32 iReqType = 1;
+	optional msgSignerInfo stSigner = 2;
+	int32 iTicketSize = 3;
+	string strTicket = 4; // ==> This corresponds to stTicketFormat, serialized.
+	uint32 uiMaxNoPsnymCert = 5;
+	int32 iLTCAIdRange = 6;
+	int32 iPCAIdRange = 7;
+	int32 iNonce = 8;
+	int64 tTimeStamp = 9;
+	msgError stErrInfo = 10;
+	optional msgSignature stSign = 11;
+};
+
+/*****************************************************************************/
+//***************************** Revoking Ticket *******************************/
+/*****************************************************************************/
+/*****************************************************************************/
+/*****************************************************************************/
+///     Request to Revoke Tickets into TRL (Ticket Revocation List) in LTCA
+
+//..................................TBC.......................
+/*****************************************************************************/
+/*****************************************************************************/
+//********************* Obtaining Pseudonym Certificates *********************/
+/*****************************************************************************/
+/*****************************************************************************/
+///              ToBeSignedCSR Format Based on IEEE 1609.2 Standard
+message msgToBeSignedCSR {
+	uint32 csrVersion = 1;
+	msgSubType.SubjectType subjectType = 2; // [default = wsa_ca1]
+	msgRequestScopeType.RequestScopeType requestType = 3; //[default = specifiedInRequest]
+	optional msgCertSpecificData typeSpecificData = 4;
+	msgECPublicKey stECPsnymPublicKey = 5;
+};
+
+/*****************************************************************************/
+///         WAVECertificateRequest Format Based on IEEE 1609.2 Standard
+message msgWAVECertificateRequest {
+	optional msgSignerInfo stSigner = 1;
+	msgToBeSignedCSR unsignedCsr = 2;
+	optional msgSignature stSign = 3;
+};
+
+/*****************************************************************************/
+///       Pseudonym Certificate Request Format from Vehicle to PCA
+message msgPsnymCertReq_V2PCA {
+	int32 iReqType = 1;
+	int32 iTicketSize = 2;
+	string strTicket = 3;
+	int32 iLTCAIdRange = 4;
+	int32 iPCAIdRange = 5;
+	int32 iLocation = 6;
+	uint32 uiPsnymCertNo = 7;
+	repeated msgWAVECertificateRequest pstPsnymCertReq = 8;
+	int32 iNonce = 9;
+	int64 tTimeStamp = 10;
+};
+
+/*****************************************************************************/
+///          Pseudonym Certificate Response from PCA to Vehicle
+message msgPsnymCertRes_PCA2V {
+	int32 iReqType = 1;
+  optional msgSignerInfo stSigner = 2;
+	string strReqIdentification = 3;
+	int32 iLTCAIdRange = 4;
+	int32 iPCAIdRange = 5;
+	uint32 uiPsnymCertNo = 6;
+	repeated msgPsnymCertFormat stPsnymCert = 7;
+	int32 iNonce = 8;
+	int64 tTimeStamp = 9;
+	msgError stErrInfo = 10;
+	optional msgSignature stSign = 11;
+};
+
+/*****************************************************************************/
+///       Pseudonym Certificate Acknowledge sent from Vehicle to PCA
+message msgPsnymCertAck_V2PCA {
+	int32 iReqType = 1;
+	int32 iNonce = 2;
+	int64 tTimeStamp = 3;
+	msgError stErrInfo = 4;
+};
+
+/*****************************************************************************/
+//************************* Obtaining Pseudonym CRL **************************/
+/*****************************************************************************/
+/*****************************************************************************/
+///                            Pseudonym CRL Format
+message msgPsnymCRLFormat {
+	string strPsnymCRLSerialNo = 1;
+	uint32 uiRevokedPsnymCertNo = 2;
+	repeated string strRevokedPsnymCertSerialNo = 3;
+	int64 tTimeStamp = 4;
+};
+
+/*****************************************************************************/
+///             IDAndDate Format Based on IEEE 1609.2 Standard
+message msgIDAndDate {
+	string strID = 1;
+	int64 expiry = 2;
+};
+
+/*****************************************************************************/
+///             ToBeSignedCRL Format Based on IEEE 1609.2 Standard
+message msgToBeSignedCRL {
+	msgCRLType.CRLType type = 1; // [default = idOnly];
+	uint32 crlSeries = 2;
+	uint32 iCAID = 3;
+	uint32 crlSerial = 4;
+	uint64 tStartPeriod = 5;
+	uint64 tIssueDate = 6;
+	uint64 tNextCRL = 7;
+  uint64 uiRevokedPsnymNo = 8;
+	repeated string strRevokedPsnymCertSerialNo = 9;
+	msgIDAndDate stEntriesIDAndDate = 10; // [2^64 - 1];
+};
+
+/*****************************************************************************/
+///                WAVECRL Format Based on IEEE 1609.2 Standard
+message msgWAVECRL {
+	uint32 uiWaveCRLVersion = 1;
+	optional msgSignerInfo stSigner = 2;
+	msgToBeSignedCRL stToBeSignedCRL = 3;
+	optional msgSignature stSign = 4;
+};
+
+/*****************************************************************************/
+///        WAVECertificateResponse Format Based on IEEE 1609.2 Standard
+message msgWAVECertificateResponse {
+	msgWAVECRL stCRLPath = 1;
+};
+
+/*****************************************************************************/
+///      Pseudonym CRL Request from Vehicle to PCA to Obtain Pseudo-CRL
+message msgPsnymCRLReq_V2PCA {
+	int32 iReqType = 1;
+	optional msgSignerInfo stSigner = 2;
+	uint32 uiCurrentCRLVersion = 3;
+	int32 iPCAIdRange = 4;
+	int32 iRegionId = 5;
+	int32 iPsnymCertLen = 6;
+	string strPsnymCert = 7;
+	int32 iNonce = 8;
+	int64 tTimeStamp = 9;
+	optional msgSignature stSign = 10;
+};
+
+/// Pseudonym CRL Response from PCA to Vehicle to fetch the latest version of CRL
+message msgPsnymCRLRes_PCA2V {
+	int32 iReqType = 1;
+  optional msgSignerInfo stSigner = 2;
+	int32 iPCAIdRange = 3;
+	int32 iNonce = 4;
+	int64 tTimeStamp = 5;
+	msgError stErrInfo = 6;
+	//optional msgWAVECRL stWAVECRLRes = 7;
+  optional string strWAVECRLRes = 7;
+	optional msgSignature stSign = 8;
+};
+
+/*****************************************************************************/
+/// Pseudonym OCSP Request from Vehicle to PCA to Obtain Pseudonym Revocation Status
+message msgPsnymOCSPReq_V2PCA {
+	int32 iReqType = 1;
+	optional msgSignerInfo stSigner = 2;
+	int32 iPCAIdRange = 3;
+	int32 iRegionId = 4;
+	uint32 uiNoOfPsnymsToBeChecked = 5;
+	repeated string strPsnymsSerialNoToBeChecked = 6;
+	int32 iPsnymCertLen = 7;
+	string strPsnymCert = 8;
+	int32 iNonce = 9;
+	int64 tTimeStamp = 10;
+	optional msgSignature stSign = 11;
+};
+
+///
+message msgPsnymRevocationStatus {
+        string strPsnymSerialNo = 1;
+        bool bRevocationStatus = 2;
+};
+
+/// Pseudonym OCSP Response from PCA to Vehicle
+message msgPsnymOCSPRes_PCA2V {
+	int32 iReqType = 1;
+  optional msgSignerInfo stSigner = 2;
+  int32 iPCAIdRange = 3;
+  uint32 uiNoOfPsnymsToBeChecked = 4;
+  repeated msgPsnymRevocationStatus stRevocationStatus = 5;
+  int32 iNonce = 6;
+  int64 tTimeStamp = 7;
+  msgError stErrInfo = 8;
+  optional msgSignature stSign = 9;
+}
+
+/*****************************************************************************/
+///      Request to Append Revoked Pseudonyms into the CRL (Police to RA)
+message msgRevokePsnymCertReq_P2RA {
+	int32 iReqType = 1;
+	optional msgSignerInfo stSigner = 2;
+	int32 iPCAIdRange = 3;
+	string strECSecManECPubKey = 4;
+	uint32 uiNoOfPsnymsToBeRevoked = 5;
+	repeated string strRevokedPsnymCert = 6 ;
+	int32 iNonce = 7;
+	int64 tTimeStamp = 8;
+	optional msgSignature stSign = 9;
+};
+
+/*****************************************************************************/
+///     Request to Append Revoked Pseudonyms into the CRL (RA to PCA)
+message msgRevokePsnymCertReq_RA2PCA {
+	int32 iReqType = 1;
+	optional msgSignerInfo stSigner = 2;
+	uint32 uiNoOfPsnymsToBeRevoked = 3;
+	repeated string strRevokedPsnymCert = 4;
+	int32 iNonce = 5;
+	int64 tTimeStamp = 6;
+	optional msgSignature stSign = 7;
+};
+
+/*****************************************************************************/
+///    Response to Append Revoked Pseudonyms into the CRL (PCA to RA)
+message msgRevokePsnymCertRes_PCA2RA {
+	int32 iReqType = 1;
+	optional msgSignerInfo stSigner = 2;
+	uint32 uiNoOfPsnymsToBeRevoked = 3;
+	uint32 uiNoOfSuccessfullyRevokedPsnyms = 4;
+	uint32 uiNoOfSuccessfullyRevokedTickets = 5;
+};
+
+/*****************************************************************************/
+/// Request to Append the Corresponding X509 Certificate for a Ticket on LTCA
+message msgRevokeX509CertReq_RA2LTCA {
+	int32 iReqType = 1;
+	optional msgSignerInfo stSigner = 2;
+	uint32 uiNoOfPsnymsToBeRevoked = 3;
+	repeated string strTicketSerialNo = 4;
+	int32 iNonce = 5;
+	int64 tTimeStamp = 6;
+	optional msgSignature stSign = 7;
+};
+
+/*****************************************************************************/
+/// RA's Response to the Police to append revoked pseudonyms into the CRL
+message msgRevokePsnymCertRes_RA2P {
+	int32 iReqType = 1;
+	optional msgSignerInfo stSigner = 2;
+	uint32 uiNoOfPsnymsToBeRevoked = 3;
+	uint32 uiNoOfSuccessfullyRevokedX509Cert = 4;
+	uint32 uiNoOfSuccessfullyRevokedPsnyms = 5;
+	message msgPsnymRevocationErrInfo {
+		int32 iErrGenSource = 1;
+		msgError stDetailedErrInfo = 2;
+	}
+
+	repeated msgPsnymRevocationErrInfo pstPsnymRevocationErrInfo = 6;
+	int32 iNonce = 7;
+	int64 tTimeStamp = 8;
+	msgError stErrInfo = 9;
+	optional msgSignature stSign = 10;
+};
+
+/*****************************************************************************/
+/*****************************************************************************/
+//********************** Performing Pseudonym Resolution *********************/
+/*****************************************************************************/
+/*****************************************************************************/
+/// Data structure sent from Police to RA to perform pseudonym resolution
+message msgPsnymResolutionReq_Police2RA {
+	int32 iReqType = 1;
+	optional msgSignerInfo stSigner = 2;
+	uint32 uiNoOfPsnymsToBeResolved = 3;
+	/*message msgPsnymResolution {
+		int32 iPsnymCertLen = 1;
+		string strPsnymCert = 2;
+	};*/
+
+	//repeated msgPsnymResolution pstPsnymResolutionInfo = 4;
+        repeated string strPsnymsSerialNoToBeResolved = 4;
+	int32 iPoliceId = 5;
+	int32 iRAIdRange = 6;
+	int32 iNonce = 7;
+	int64 tTimeStamp = 8;
+	optional msgSignature stSign = 9;
+};
+
+/*****************************************************************************/
+/// Data structure sent from RA to PCA to fetch the Ticket-ID, corresponding to a pseudonym certificate
+message msgPsnymResolutionReq_RA2PCA {
+	int32 iReqType = 1;
+	optional msgSignerInfo stSigner = 2;
+	uint32 uiNoOfPsnymsToBeResolved = 3;
+	/*message msgPsnymResolution {
+		int32 iPsnymCertLen = 1;
+		string strPsnymCert = 2;
+	};*/
+  repeated string strPsnymsSerialNoToBeResolved = 4;
+	//repeated msgPsnymResolution pstPsnymResolutionInfo = 4;
+	int32 iRAIdRange = 5;
+	int32 iPCAIdRange = 6;
+	int32 iNonce = 7;
+	int64 tTimeStamp = 8;
+	optional msgSignature stSign = 9;
+};
+
+/*****************************************************************************/
+/// Data structure sent from PCA to RA to send the corresponding Ticket-ID for a specific pseudonym certificate
+message msgPsnymResolutionRes_PCA2RA {
+	int32 iReqType = 1;
+	optional msgSignerInfo stSigner = 2;
+	uint32 uiNoOfPsnymsToBeResolved = 3;
+	message msgPsnymResolution {
+		string strPsnymCertSerialNo = 1;
+		string strTicketSerialNo = 2;
+		string strTicketIdentifiableKey = 3;
+		msgError stErrInfo = 4;
+	}
+
+	repeated msgPsnymResolution pstPsnymResolutionInfo = 4;
+	int32 iRAIdRange = 5;
+	int32 iPCAIdRange = 6;
+	int32 iNonce = 7;
+	int64 tTimeStamp = 8;
+	msgError stErrInfo = 9;
+	optional msgSignature stSign = 10;
+};
+
+/*****************************************************************************/
+/// Data structure sent from RA to LTCA to query for the corresponding X509 Certificate for a specific Ticket-ID
+message msgPsnymResolutionReq_RA2LTCA {
+	int32 iReqType = 1;
+	optional msgSignerInfo stSigner = 2;
+	uint32 uiNoOfPsnymsToBeResolved = 3;
+	message msgPsnymResolution {
+		string strTicketSerialNo = 1;
+		string strTicketIdentifiableKey = 2;
+	};
+
+	repeated msgPsnymResolution pstPsnymResolutionInfo = 4;
+	int32 iRAIdRange = 5;
+	int32 iLTCAIdRange = 6;
+	int32 iNonce = 7;
+	int64 tTimeStamp = 8;
+	optional msgSignature stSign = 9;
+};
+
+/*****************************************************************************/
+/// Data structure sent from LTCA to RA to send the corresponding X509 Certificate for a specific pseudonym certificate
+message msgPsnymResolutionRes_LTCA2RA {
+	int32 iReqType = 1;
+	optional msgSignerInfo stSigner = 2;
+	uint32 uiNoOfPsnymsToBeResolved = 3;
+	message msgPsnymResolution {
+		string strTicketSerialNo = 1;
+		string strVehX509CertSerialNo = 2;
+		//int32 iVLTCSize = 3;
+    string strTicketIdentifiableKey = 3;
+		//string strVehX509Cert = 4;
+		msgError stErrInfo = 5;
+	};
+
+	repeated msgPsnymResolution pstPsnymResolutionInfo = 4;
+	int32 iRAIdRange = 5;
+	int32 iLTCAIdRange = 6;
+	int32 iNonce = 7;
+	int64 tTimeStamp = 8;
+	msgError stErrInfo = 9;
+	optional msgSignature stSign = 10;
+};
+
+/*****************************************************************************/
+/// Data structure sent from RA to Police to send the corresponding X509 Certificate for a specific pseudonym certificate
+message msgPsnymResolutionRes_RA2Police {
+	int32 iReqType = 1;
+	optional msgSignerInfo stSigner = 2;
+	uint32 uiNoOfPsnymsToBeResolved = 3;
+	message msgPsnymResolution {
+		//int32 iPsnymCertLen = 1;
+		//string strPsnymCert = 2;
+    string strPsnymSerialNo = 1;
+		string strVehX509CertSerialNo = 2;
+		//int32 iVLTCSize = 3;
+		//string strVehX509Cert = 4;
+		msgError stErrInfo = 3;
+	};
+
+	repeated msgPsnymResolution pstPsnymResolutionInfo = 4;
+	int32 iRAIdRange = 5;
+	int32 iLTCAIdRange = 6;
+	int32 iPCAIdRange = 7;
+	int32 iPoliceId = 8;
+	int32 iNonce = 9;
+	int64 tTimeStamp = 10;
+	msgError stErrInfo = 11;
+	optional msgSignature stSign = 12;
+};
+
+/*****************************************************************************/
+/// Data structure sent from Police to RA to acknowledge RA about successfully receiving the result, or if any error happens
+message msgPsnymResolutionAck_Police2RA {
+	int32 iReqType = 1;
+	optional msgSignerInfo stSigner = 2;
+	uint32 uiNoOfPsnymsToBeResolved = 3;
+	int32 iPoliceId = 4;
+	int32 iRAIdRange = 5;
+	repeated msgError pstPsnymResolutionErrInfo = 6;
+	int32 iNonce = 7;
+	int64 tTimeStamp = 8;
+	msgError stErrInfo = 9;
+	optional msgSignature stSign = 10;
+};
+
+// ############################################################################
+/*****************************************************************************/
+/*****************************************************************************/
+/***************** Banning Tickets From Obtaining Pseudonyms ******************/
+/*****************************************************************************/
+/*****************************************************************************/
+/// Data structure sent from Police to RA to ban Tickets from obtaining pseudonyms
+message msgBanTicketsReq_Police2RA {
+	int32 iReqType = 1;
+	optional msgSignerInfo stSigner = 2;
+	uint32 chPolicyId = 3;
+	uint32 uiNoOfTicketsToBeBanned = 4;
+	message msgBannedTickets {
+		string strSerialNo = 1;
+		string strTicket = 2;
+	};
+
+	repeated msgBannedTickets pstBannedTicketsInfo = 5;
+	int32 iPoliceId = 6;
+	int32 iRAIdRange = 7;
+	int32 iNonce = 8;
+	int64 tTimeStamp = 9;
+	optional msgSignature stSign = 10;
+};
+
+/*****************************************************************************/
+/// Data structure sent from RA to PCA to ban Tickets from obtaining pseudonyms
+message msgBanTicketsReq_RA2PCA {
+	int32 iReqType = 1;
+	optional msgSignerInfo stSigner = 2;
+	uint32 chPolicyId = 3;
+	uint32 uiNoOfTicketsToBeBanned = 4;
+	message msgBannedTickets {
+		string strSerialNo = 1;
+		string strTicket = 2;
+	};
+
+	repeated msgBannedTickets pstBannedTicketsInfo = 5;
+	int32 iRAIdRange = 6;
+	int32 iLTCAIdRange = 7;
+	int32 iNonce = 8;
+	int64 tTimeStamp = 9;
+	optional msgSignature stSign = 10;
+};
+
+/*****************************************************************************/
+/// Data structure sent from PCA to RA to response on banning tickets
+message msgBanTicketsRes_PCA2RA {
+	int32 iReqType = 1;
+	optional msgSignerInfo stSigner = 2;
+	uint32 uiNoOfTicketsToBeBanned = 3;
+	uint32 uiNoOfSuccessfullyBannedTickets = 4;
+	message msgBannedTickets {
+		string strTicketSerialNo = 1;
+		msgError stErrInfo = 2;
+	};
+
+	repeated msgBannedTickets pstBannedTicketsInfo = 5;
+	int32 iRAIdRange = 6;
+	int32 iLTCAIdRange = 7;
+	int32 iNonce = 8;
+	int64 tTimeStamp = 9;
+	msgError stErrInfo = 10;
+	optional msgSignature stSign = 11;
+};
+
+/*****************************************************************************/
+/// Data structure sent from RA to Police to response the authority on banning the tickets. Appropriate error messages will be sent if happened.
+message msgBanTicketsRes_RA2Police {
+	int32 iReqType = 1;
+	optional msgSignerInfo stSigner = 2;
+	uint32 uiNoOfTicketsToBeBanned = 3;
+	uint32 uiNoOfSuccessfullyBannedTickets = 4;
+	message msgBannedTickets {
+		string strTicketSerialNo = 1;
+		int32 iTicketLen = 2;
+		string strTicket = 3;
+		msgError stErrInfo = 4;
+	};
+
+	repeated msgBannedTickets pstBannedTicketsInfo = 5;
+	int32 iRAIdRange = 6;
+	int32 iLTCAIdRange = 7;
+	int32 iPCAIdRange = 8;
+	int32 iPoliceId = 9;
+	int32 iNonce = 10;
+	int64 tTimeStamp = 11;
+	msgError stErrInfo = 12;
+	optional msgSignature stSign = 13;
+};
+
+/*****************************************************************************/
+/// Data structure sent from Police to RA to acknowledge RA about successfully receiving the result on banning tickets, or if any error happens .
+message msgBanTicketsAck_Police2RA {
+	int32 iReqType = 1;
+	optional msgSignerInfo stSigner = 2;
+	uint32 uiNoOfTicketsToBeBanned = 3;
+	int32 iPoliceId = 4;
+	int32 iRAIdRange = 5;
+	repeated msgError pstTicketErrInfo = 6;
+	int32 iNonce = 7;
+	int64 tTimeStamp = 8;
+	msgError stErrInfo = 9;
+	optional msgSignature stSign = 10;
+};
+
+// ############################################################################
+/*****************************************************************************/
+/*****************************************************************************/
+/// Vehicle's configurations identifies all the settings in order to execute and perform operations on the vehicle execution file.
+message msgVehicleConfig {
+// Vehicle's configurations parameters, which is defined by the server
+	string strLTCAServerURL = 1; //**< Identifies the URL to access LTCA's server */
+	string strPCAServerURL = 2; //**< Identifies the URL to access PCA's server */
+	string strRAServerURL = 3; //**< Identifies the URL to access RA's server */
+	string strLTCAMethodName = 4; //**< Identifies the method to call the corresponding LTCA's function */
+	string strPCAMethodName = 5; //**< Identifies the method to call the corresponding PCA's function */
+	string strRAMethodName = 6; //**< Identifies the method to call the corresponding RA's function */
+	uint64 lMaxXMLRPCLimitBufferSize = 7; //**< Identifies the maximum number of bytes to transfer using XMLRPC */
+	float fVersion = 8; //**< Identifies the configuration version */
+};
+
+/*****************************************************************************/
+/// Police configurations identifies the settings in order to execute and perform operations on police execution file
+message msgPoliceConfig {
+// Police's configurations parameters, which is defined by the server
+	string strLTCAServerURL = 1; //**< Identifies the URL to access LTCA's server */
+	string strPCAServerURL = 2; //**< Identifies the URL to access PCA's server */
+	string strRAServerURL = 3; //**< Identifies the URL to access RA's server */
+	string strLTCAMethodName = 4; //**< Identifies the method to call the corresponding LTCA's function */
+	string strPCAMethodName = 5; //**< Identifies the method to call the corresponding PCA's function */
+	string strRAMethodName = 6; //**< Identifies the method to call the corresponding RA's function */
+	uint64 lMaxXMLRPCLimitBufferSize = 7; //**< Identifies the maximum number of bytes to transfer using XMLRPC */
+	float fVersion = 8; //**< Identifies the configuration version */
+};
+
+/*****************************************************************************/
+/// VPKIlib configurations is the settings common among all the entities, vehicle, police and the servers. All the policies are also defined here.
+message msgVPKILibConfig {
+/// VPKILib's configurations parameters, which is defined by the server
+	int32 iRCAId = 1; //**< Identifies RCA's identification */
+	int32 iPCAId = 2; //**< Identifies PCA's identification */
+	int32 iLTCAId = 3; //**< Identifies LTCA's identification */
+	int32 iRAId = 4; //**< Identifies RA's identification */
+	int32 iPoliceId = 5; //**< Identifies Police's identification */
+	int32 iRegionId = 6; //**< Identifies region identification */
+	int32 iLocationId = 7; //**< Identifies location identification */
+	string strGetHelpCommandName = 8; //**< Identifies the command name to get help */
+	message msgTicketPolicy {
+		bool bTicketReusability = 1; //**< Identifies if the ticket is reusable or not */
+		uint32 uiMaxNoOfTicketsToObtainPerHour = 2; //**< Identifies maximum number of tickets to obtain per hour */
+		uint32 uiMinNoOfTicketsToReq = 3; //**< Identifies minimum number of tickets to obtain per request */
+		uint32 uiMaxNoOfTicketsToReq = 4; //**< Identifies maximum number of tickets to obtain per request */
+		uint32 uiMinNoOfTicketsToRevoke = 5; //**< Identifies minimum number of tickets to revoke in a request */
+		uint32 uiMaxNoOfTicketsToRevoke = 6; //**< Identifies maximum number of tickets to revoke in a request */
+		uint32 uiMinNoOfTicketsToBan = 7; //**< Identifies minimum number of tickets to ban in a request */
+		uint32 uiMaxNoOfTicketsToBan = 8; //**< Identifies maximum number of tickets to ban in a request */
+		uint32 uiBanTicketPeriod = 9; //**< Identifies the time interval to ban tickets in the case of prohibition */
+	}
+
+	repeated msgTicketPolicy stTicketPolicies = 9;
+	message msgPsnymPolicy {
+		string strResponsibleNodeToRevokePsnyms = 1; //**< Identifies the responsible node to revoke pseudonyms */
+		uint32 uiMaxNoOfPsnymCertToObtainPerHour = 2; //**< Identifies maximum number of pseudonyms to obtain per hour */
+
+		// Identifies the number of requests to obtain pseudonyms using a ticket
+		uint32 uiMaxNoOfPsnymCertReqUsingATicket = 3; //**< Identifies maximum number of pseudonyms to obtain with a specific ticket */
+		uint32 uiMinNoOfPsnymCertToReq = 4; //**< Identifies minimum number of pseudonyms to obtain in a request */
+		uint32 uiMaxNoOfPsnymCertToReq = 5; //**< Identifies maximum number of pseudonyms to obtain in a request */
+		uint32 uiMinNoOfPsnymCertToResolve = 6; //**< Identifies minimum number of pseudonyms to resolve in a request */
+		uint32 uiMaxNoOfPsnymCertToResolve = 7; //**< Identifies maximum number of pseudonyms to resolve in a request */
+		uint32 uiMinNoOfPsnymCertToRevoke = 8; //**< Identifies minimum number of pseudonyms to revoke in a request */
+		uint32 uiMaxNoOfPsnymCertToRevoke = 9; //**< Identifies maximum number of pseudonyms to revoke in a request */
+		uint32 uiMaxNumOfPsnymCertToObtainPerReq = 10; //**< Identifies maximum number of pseudonyms to obtain per request */
+		string strPsnymOverlappingMechanism = 11; //**< Identifies the overlapping mechanism to issue pseudonyms */
+	}
+
+	repeated msgPsnymPolicy stPsnymPolicies = 10;
+	int32 iMaxDelayThreashold = 11; //**< Identifies the maximum delay threashold */
+	int32 iPsnymIssuanceValidityPeriod = 12; //**< Identifies the validity period to issue pseudonyms */
+	int32 iTicketValidityPeriod = 13; //**< Identifies the validity interval for the tickets */
+	int32 iRandValueThreashold = 14; //**< Identifies the threashold to generate random values */
+	int32 iCryptoBuffSize = 15; //**< Identifies the buufer size to perform cryptographic operations */
+	uint32 uiSignatureSize = 16; //**< Identifies the size of the signature, which is algorithm dependent */
+	int32 iTimeStampLowerBound = 17; //**< Identifies the lower bound to verify timestamp */
+	int32 iTimeStampUpperBound = 18; //**< Identifies the upper bound to verify timestamp */
+	int32 iCurrentCRLVersion = 19; //**< Identifies the current version of CRL stored */
+	int32 iNonceIncreasingValue = 20; //**< Identifies the number as the formula to increase for each received nonce in the requests */
+	float fVPKIVersion = 21; //**< Identifies the VPKILIB configuration version */
+};
+
+/*****************************************************************************/
+/*************** Upgrading Configuration Client to PCA Server ****************/
+/*****************************************************************************/
+/*****************************************************************************/
+/// Request from the clients to the server to upgrade system configurations
+message msgUpgradeConfigurationReq_Client2Server {
+	int32 iReqType = 1;
+	int32 iPCAIdRange = 2;
+	int32 iRegionId = 3;
+	int32 iPsnymCertLen = 4;
+	string strPsnymCert = 5;
+	int32 iNonce = 6;
+	int64 tTimeStamp = 7;
+	optional msgSignature stSign = 8;
+};
+
+/*****************************************************************************/
+/// Response from the server to the clients to upgrade system configurations
+message msgUpgradeConfigurationRes_Server2Client {
+	int32 iReqType = 1;
+	optional msgSignerInfo stSigner = 2;
+	msgVehicleConfig stVehConfig = 3;
+	msgPoliceConfig stPoliceConfig = 4;
+	msgVPKILibConfig stVPKILibConfig = 5;
+	int32 iNonce = 6;
+	int64 tTimeStamp = 7;
+	msgError stErrInfo = 8;
+	optional msgSignature stSign = 9;
+};
+
+/*****************************************************************************/
+//***************** Performing Reverse Pseudonym Resolution ******************/
+/*****************************************************************************/
+/*****************************************************************************/
+/// Data structure sent from Police to RA to perform reverse pseudonym resolution
+message msgReversePsnymResolutionReq_Police2RA {
+	int32 iReqType = 1;
+	optional msgSignerInfo stSigner = 2;
+	int32 iNoOfX509CertToBeResolved = 3;
+	repeated string strX509Cert = 4;
+	int32 iNonce = 5;
+	int64 tTimeStamp = 6;
+	optional msgSignature stSign = 7;
+};
+
+/*****************************************************************************/
+/// Data structure sent from RA to LTCA to query for the corresponding X509 Certificate for a specific Ticket-ID
+message msgReversePsnymResolutionReq_RA2LTCA {
+	int32 iReqType = 1;
+	optional msgSignerInfo stSigner = 2;
+	int32 iNoOfX509CertToBeResolved = 3;
+	repeated string strX509Cert = 4;
+	int32 iNonce = 5;
+	int64 tTimeStamp = 6;
+	optional msgSignature stSign = 7;
+};
+
+/*****************************************************************************/
+/// Data structure sent from LTCA to RA to send the corresponding X509 Certificate for a specific pseudonym certificate
+message msgReversePsnymResolutionRes_LTCA2RA {
+	int32 iReqType = 1;
+	optional msgSignerInfo stSigner = 2;
+	int32 iNoOfX509CertToBeResolved = 3;
+	message msgTicket {
+		string strTicketSerialNo = 1;
+		string strTicket = 2;
+	};
+
+	message msgTicketResolution {
+		string strVehX509CertSerialNo = 1;
+		int32 iNoOfResolvedTicket = 2;
+		repeated msgTicket pstTicketInfo = 3;
+	};
+
+	repeated msgTicketResolution pstTicketResolutionInfo = 4;
+	int32 iNonce = 5;
+	int64 tTimeStamp = 6;
+	msgError stErrInfo = 7;
+	optional msgSignature stSign = 8;
+};
+
+/*****************************************************************************/
+/// Data structure sent from RA to PCA to fetch the Ticket-ID, corresponding to a pseudonym certificate
+message msgReversePsnymResolutionReq_RA2PCA {
+	int32 iReqType = 1;
+	optional msgSignerInfo stSigner = 2;
+	int32 iNoOfX509CertToBeResolved = 3;
+	message msgTicket {
+		string strTicketSerialNo = 1;
+		string strTicket = 2;
+	};
+
+	message msgTicketResolution {
+		int32 iNoOfResolvedTicket = 1;
+		repeated msgTicket pstTicketInfo = 2;
+	};
+
+	repeated msgTicketResolution pstTicketResolutionInfo = 4;
+	int32 iNonce = 5;
+	int64 tTimeStamp = 6;
+	optional msgSignature stSign = 7;
+};
+
+/*****************************************************************************/
+/// Data structure sent from PCA to RA to send the corresponding Ticket-ID for a specific pseudonym certificate
+message msgReversePsnymResolutionRes_PCA2RA {
+	int32 iReqType = 1;
+	optional msgSignerInfo stSigner = 2;
+	int32 iNoOfX509CertToBeResolved = 3;
+	message msgPsnym {
+		string strTicketSerialNo = 1;
+		repeated string strPsnym = 2;
+	};
+
+	message msgTicketResolution {
+		int32 iNoOfResolvedPsnyms = 1;
+		repeated msgPsnym pstTicketInfo = 2;
+	};
+
+	repeated msgPsnymResolution pstTicketResolutionInfo = 4;
+	message msgPsnymResolution {
+		string strPsnymCertSerialNo = 1;
+		string strTicketSerialNo = 2;
+		string strTicketIdentifiableKey = 3;
+	};
+
+	repeated msgPsnymResolution pstPsnymResolutionInfo = 5;
+	int32 iNonce = 6;
+	int64 tTimeStamp = 7;
+	msgError stErrInfo = 8;
+	optional msgSignature stSign = 9;
+};
+
+/*****************************************************************************/
+/// Data structure sent from RA to Police to send the corresponding X509 Certificate for a specific pseudonym certificate
+message msgReversePsnymResolutionRes_RA2Police {
+	int32 iReqType = 1;
+	optional msgSignerInfo stSigner = 2;
+	int32 iNoOfX509CertToBeResolved = 3;
+	message msgPsnymResolution {
+		int32 iNoOfResolvedPsnyms = 1;
+		repeated string strPsnymCert = 2;
+	};
+
+	repeated msgPsnymResolution pstPsnymResolutionInfo = 4;
+	int32 iNonce = 5;
+	int64 tTimeStamp = 6;
+	msgError stErrInfo = 7;
+	optional msgSignature stSign = 8;
+};
+
+/*****************************************************************************/
+
+/// Request to verify if a vehicle has obtained ticket from other LTCAs (LTCA to TVR)
+message msgTicketProvisionValidationReq_LTCA2TVR {
+	int32 iReqType = 1;
+	optional msgSignerInfo stSigner = 2;
+	string strLTCAECPubKey = 3;
+	string strHashedVehiLTCert = 4;
+	int32 iNonce = 5;
+	int64 tTimeStamp = 6;
+	optional msgSignature stSign = 7;
+};
+
+/*****************************************************************************/
+/// TVR's Response to inform LTCA about the status of ticket provision for a vehicle
+message msgTicketProvisionValidationRes_TVR2LTCA {
+	int32 iReqType = 1;
+	optional msgSignerInfo stSigner = 2;
+	uint32 chStatus = 3;
+	int32 iNonce = 4;
+	int64 tTimeStamp = 5;
+	msgError stErrInfo = 6;
+	optional msgSignature stSign = 7;
+};
+
+/*****************************************************************************/
+
+/// Request to verify if a ticket has obtained pseudonyms from other PCAs (PCA to PVR)
+message msgPsnymProvisionValidationReq_PCA2PVR {
+	int32 iReqType = 1;
+	optional msgSignerInfo stSigner = 2;
+	string strPCAECPubKey = 3;
+	string strHashedTicket = 4;
+	int32 iNonce = 5;
+	int64 tTimeStamp = 6;
+	optional msgSignature stSign = 7;
+};
+
+/*****************************************************************************/
+/// Response to inform PCA if a ticket has obtained pseudonyms from other PCAs (PVR to PCA)
+message msgPsnymProvisionValidationRes_PVR2PCA {
+	int32 iReqType = 1;
+	optional msgSignerInfo stSigner = 2;
+	uint32 chStatus = 3;
+	int32 iNonce = 4;
+	int64 tTimeStamp = 5;
+	msgError stErrInfo = 6;
+	optional msgSignature stSign = 7;
+};
+
+//message msgPseuResolutionReq_Police2RA{
+//int iReqType;
+//    SignerInfo signer;
+//    unsigned int uiNoOfPseudonymsToBeResolved;
+//
+//    struct stPseudoResolution {
+//        int iPsnymCertLen;
+//        std::string strPsnymCert;
+//
+//        stPseudoResolution() {
+//            iPsnymCertLen = INVALID_VALUE;
+//            strPsnymCert = "";
+//        }
+//    };
+//    stPseudoResolution* pstPseudoResolutionInfo;
+//
+//    int iPoliceId;
+//    int iRAIdRange;
+//    int iNonce;
+//    time_t tTimeStamp;
+//    stSignature stSign;
+//}
+
+//
+/*
+
+ message msgRevokeTicketReq_P2RA {
+	int32 iReqType = 1;
+	optional msgSignerInfo stSigner = 2;
+	uint32 chPolicyId = 3;
+	//string strECSignerPubKey = 4;
+	uint32 uiNoOfTicketsToBeRevoked = 5;
+	repeated string strRevokedTickets = 6;
+	int32 iNonce = 7;
+	int64 tTimeStamp = 8;
+	optional msgSignature stSign = 9;
+}
+
+message msgRevokeTicketRes_RA2P{
+int32 iReqType = 1;
+    optional msgSignerInfo stSigner = 2;
+    uint32 uiNoOfTicketsToBeRevoked=3;
+    uint32 uiNoOfSuccessfullyRevokedTicket=4;
+    stError* pstRevokedTicketErrInfo;
+    int iNonce;
+    time_t tTimeStamp;
+    stError stErrInfo;
+    stSignature stSign;
+}
+message msgRevokeX509CertRes_LTCA2RA{
+int32 iReqType = 1;
+	optional msgSignerInfo stSigner = 2;
+	uint32 uiNoOfPseudonymsToBeRevoked = 3;
+    uint32 uiNoOfSuccessfullyRevokedX509Cert;
+    stError* pstRevokedX509CertErrInfo;
+    int iNonce;
+    time_t tTimeStamp;
+    stError stErrInfo;
+    stSignature stSign;
+}*/
